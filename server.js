@@ -44,7 +44,12 @@ app.get('/libs/:id/games/new', (req, res) => {
   });
 });
 
-app.post('/libs/:id/games', (req, res) => {
+app.get('/libs/:id/games', (req, res, next) => {
+  const SQL = `SELECT * FROM templates JOIN games on templates.id = games.id`;
+
+});
+
+app.post('/libs/:id/games', (req, res, next) => {
   let SQL = `INSERT INTO games (username, date_created, template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id;`;
   const values = [
     req.body.username,
@@ -65,21 +70,21 @@ app.post('/libs/:id/games', (req, res) => {
   client.query(SQL, values, (err, result) => {
     if (err) {
       console.log(err);
-      res.render('pages/err', { err });
+      next(err);
     }
 
     res.redirect(`libs/${req.params.id}/games/${result.rows[0].id}?success=true`);
   });
 });
 
-app.get('/libs/:id/games/:game_id', (req, res) => {
+app.get('/libs/:id/games/:game_id', (req, res, next) => {
   const SQL = `SELECT * FROM templates INNER JOIN games ON templates.id = games.template_id WHERE templates.id = $1 AND games.id = $2;`;
   const values = [req.params.id, req.params.game_id];
 
   client.query(SQL, values, (err, result) => {
-    if (err) {
+    if (!result.rows[0]) {
       console.log(err);
-      res.render('pages/error', { err });
+      next(err);
     } else {
       let ejs = {
         game: result.rows[0],
