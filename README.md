@@ -103,3 +103,4 @@ Our goal is to make a simple word game that brings an on paper childhood favorit
 > Hit an external API for random word generation for all blanks/required parts of speech.</br></br>
 > Tag templates with keyword assignments, so users can search templates by keyword.</br></br>
 > All users can assign keywords to templates.</br></br>
+
