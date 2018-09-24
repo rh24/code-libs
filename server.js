@@ -24,6 +24,14 @@ app.get('/', (req, res) => {
   res.send('hello world!');
 });
 
+app.get('*', (req, res, next) => {
+  const err = new Error(`the route ${req.originalUrl} does not exist.`);
+  err.statusCode = 404;
+  err.shouldRedirect = true;
+  // the next() passes the new error object to our middleware error handler
+  next(err);
+});
+
 app.listen(PORT, () => {
   console.log(`we are listening on port ${PORT}!`);
 });
