@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS templates (
   id SERIAL PRIMARY KEY,
   title TEXT,
-  user TEXT,
+  username VARCHAR(256),
   date_created TEXT,
   template_body TEXT,
   label_1 TEXT,
@@ -21,7 +21,7 @@ DELETE FROM templates;
 
 INSERT INTO templates (
   title,
-  user,
+  username,
   date_created,
   template_body,
   label_1,
@@ -53,7 +53,7 @@ INSERT INTO templates (
 
 INSERT INTO templates (
   title,
-  user,
+  username,
   date_created,
   template_body,
   label_1,
