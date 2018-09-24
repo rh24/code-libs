@@ -31,17 +31,17 @@ This project is available as open source under the terms of the [MIT License](ht
 
 ### Conflict Plan
 
-> What will your group do when it encounters conflict? </br></br>
-Discuss the conflict amongst ourselves and work to resolve the issues with the parties concerned.
+> What will your group do when it encounters conflict? </br>
+* Discuss the conflict amongst ourselves and work to resolve the issues with the parties concerned.
 
-> How will you raise concerns to members who are not adequately contributing?</br></br>
-Discuss the idea of the inadequite contributions with that person and work to find out what that person can contribute to the pverall project.
+> How will you raise concerns to members who are not adequately contributing?</br>
+* Discuss the idea of the inadequite contributions with that person and work to find out what that person can contribute to the pverall project.
 
-> What is your process to resolve conflicts?</br></br>
-We will Discuss the initial problem/conflict. Look at the possible available solutions then vote to see what the best one would be.
+> What is your process to resolve conflicts?</br>
+* We will Discuss the initial problem/conflict. Look at the possible available solutions then vote to see what the best one would be.
 
-> How and when will you escalate the conflict if your attempts are unsuccessful?</br></br>
-After the first attempt, the person can try to bring in another teammate to help defuse the situation. If it is unsuccessful, that person should esculate the issue to the instructor.
+> How and when will you escalate the conflict if your attempts are unsuccessful?</br>
+* After the first attempt, the person can try to bring in another teammate to help defuse the situation. If it is unsuccessful, that person should esculate the issue to the instructor.
 
 ### Communication Plan
 
