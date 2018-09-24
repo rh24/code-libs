@@ -72,11 +72,23 @@ app.post('/libs/:id/games', (req, res) => {
   });
 });
 
-app.get('/libs/:id/games/:id', (req, res) => {
-  const SQL = `SELECT * FROM templates JOIN games ON template.id = games.template_id`;
+app.get('/libs/:id/games/:game_id', (req, res) => {
+  const SQL = `SELECT * FROM templates INNER JOIN games ON templates.id = games.template_id WHERE templates.id = $1 AND games.id = $2;`;
+  const values = [req.params.id, req.params.game_id];
 
   client.query(SQL, values, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.render('pages/error', { err });
+    } else {
+      let ejs = {
+        game: result.rows[0],
+        success: false
+      };
 
+      if (req.query.success) ejs.success = true;
+      res.render('pages/games/show', ejs);
+    }
   });
 });
 
