@@ -44,9 +44,9 @@ app.get('/libs/:id/games/new', (req, res) => {
   });
 });
 
-app.get('/libs/:id/games/:id', (req, res) => {
-
-});
+// app.get('/libs/:id/games/:id', (req, res) => {
+//   const SQL = `SELECT * FROM `
+// });
 
 app.get('*', (req, res, next) => {
   const err = new Error(`the route ${req.originalUrl} does not exist.`);

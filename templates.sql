@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS templates (
   label_8 TEXT,
   label_9 TEXT,
   label_10 TEXT,
-  votes INT
+  votes INT default 0
 );
 
 DELETE FROM templates;
