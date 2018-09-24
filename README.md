@@ -54,6 +54,7 @@ This project is available as open source under the terms of the [MIT License](ht
 > How will you ensure that you are creating a safe environment where everyone feels comfortable speaking up?
 * Take everyones idea into consideration and not put them down when sharing. Also by offering constructive critizism when necessary.
 
+
 ### Problem Domain
 
 Our goal is to make a simple word game that brings an on paper childhood favorite online to the web. We thought the knowledge, skills, and tech we'd need to bring this game to life would be a great way to demonstrate the skills we've picked up during 301. As a stretch goal, we will think about a fun external API to incorporate, but for now, we're going to nail down the CRUD actions with minimal consumption of external APIs. We're focusing on creating a seamless user experience that is, all at once, fun, inviting, and easy to share.
@@ -99,8 +100,15 @@ Our goal is to make a simple word game that brings an on paper childhood favorit
 
 ### Stretch Goals
 
+<<<<<<< HEAD
 > Play a narration of the games in Morgan Freeman's voice.</br></br>
 > Hit an external API for random word generation for all blanks/required parts of speech.</br></br>
 > Tag templates with keyword assignments, so users can search templates by keyword.</br></br>
 > All users can assign keywords to templates.</br></br>
 
+=======
+> Play a narration of the games in Morgan Freeman's voice.</br>
+> Hit an external API for random word generation for all blanks/required parts of speech.</br>
+> Tag templates with keyword assignments, so users can search templates by keyword.</br>
+> All users can assign keywords to templates.</br>
+>>>>>>> Add line breaks
