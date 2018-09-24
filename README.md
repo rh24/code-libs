@@ -29,6 +29,7 @@ This project is available as open source under the terms of the [MIT License](ht
 * Rebecca Hong
 * Richard Jiminez
 
+<<<<<<< HEAD
 ### Conflict Plan
 
 > What will your group do when it encounters conflict? </br>
@@ -103,3 +104,8 @@ Our goal is to make a simple word game that brings an on paper childhood favorit
 > Hit an external API for random word generation for all blanks/required parts of speech.</br></br>
 > Tag templates with keyword assignments, so users can search templates by keyword.</br></br>
 > All users can assign keywords to templates.</br></br>
+=======
+### Problem Domain
+
+Our goal is to make a simple word game that brings an on paper childhood favorite online to the web. We thought the knowledge, skills, and tech we'd need to bring this game to life would be a great way to demonstrate the skills we've picked up during 301. As a stretch goal, we will think about a fun external API to incorporate, but for now, we're going to nail down the CRUD actions with minimal consumption of external APIs. We're focusing on creating a seamless user experience that is both fun and inviting, and easy to share.
+>>>>>>> Add problem domain
