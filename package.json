@@ -1,0 +1,27 @@
+{
+  "name": "code-libs",
+  "version": "1.0.0",
+  "description": "Code Libs is a full-stack web application that draws from both a mad libs API and user contributions to bring this phrasal template word game online for everyone's enjoyment. Users may share their game links with one another, save games for later, and contribute to each other's games.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rh24/code-libs.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rh24/code-libs/issues"
+  },
+  "homepage": "https://github.com/rh24/code-libs#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "nodemon": "^1.18.4",
+    "pg": "^7.4.3",
+    "superagent": "^4.0.0-beta.5"
+  }
+}
