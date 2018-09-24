@@ -99,22 +99,7 @@ Our goal is to make a simple word game that brings an on paper childhood favorit
 
 ### Stretch Goals
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 > Play a narration of the games in Morgan Freeman's voice.</br></br>
 > Hit an external API for random word generation for all blanks/required parts of speech.</br></br>
 > Tag templates with keyword assignments, so users can search templates by keyword.</br></br>
 > All users can assign keywords to templates.</br></br>
-
-=======
-> Play a narration of the games in Morgan Freeman's voice.</br>
-> Hit an external API for random word generation for all blanks/required parts of speech.</br>
-> Tag templates with keyword assignments, so users can search templates by keyword.</br>
-> All users can assign keywords to templates.</br>
->>>>>>> Add line breaks
-=======
-> Play a narration of the games in Morgan Freeman's voice.</br></br>
-> Hit an external API for random word generation for all blanks/required parts of speech.</br></br>
-> Tag templates with keyword assignments, so users can search templates by keyword.</br></br>
-> All users can assign keywords to templates.</br></br>
->>>>>>> Add more line breaks
