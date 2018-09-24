@@ -29,7 +29,6 @@ This project is available as open source under the terms of the [MIT License](ht
 * Rebecca Hong
 * Richard Jiminez
 
-<<<<<<< HEAD
 ### Conflict Plan
 
 > What will your group do when it encounters conflict? </br>
@@ -104,46 +103,3 @@ Our goal is to make a simple word game that brings an on paper childhood favorit
 > Hit an external API for random word generation for all blanks/required parts of speech.</br></br>
 > Tag templates with keyword assignments, so users can search templates by keyword.</br></br>
 > All users can assign keywords to templates.</br></br>
-=======
-### Problem Domain
-
-Our goal is to make a simple word game that brings an on paper childhood favorite online to the web. We thought the knowledge, skills, and tech we'd need to bring this game to life would be a great way to demonstrate the skills we've picked up during 301. As a stretch goal, we will think about a fun external API to incorporate, but for now, we're going to nail down the CRUD actions with minimal consumption of external APIs. We're focusing on creating a seamless user experience that is both fun and inviting, and easy to share.
-<<<<<<< HEAD
->>>>>>> Add problem domain
-=======
-
-### Conflict Plan
-
-> What will your group do when it encounters conflict? 
-Discuss the conflict amongst ourselves and work to resolve the issues with the parties concerned.
-
-> How will you raise concerns to members who are not adequately contributing?
-Discuss the idea of the inadequite contributions with that person and work to find out what that person can contribute to the pverall project.
-
-> What is your process to resolve conflicts?
-We will Discuss the initial problem/conflict. Look at the possible available solutions then vote to see what the best one would be.
-
-> How and when will you escalate the conflict if your attempts are unsuccessful?
-After the first attempt, the person can try to bring in another teammate to help defuse the situation. If it is unsuccessful, that person should esculate the issue to the instructor.
-
-### User Stories
-
-* As a developer, I want to create a game that will delight potential employers so that they might hire us.
-* As a developer, I want to make a join table of data showing finished games for each template so that users can view games by template and see what other contributors came up with.
-* As a mad libs player, I want to have a good laugh at my stories and have them presented to me in a fun way.
-* As a lurker, I want to browse other people's finished games so that I can share ridiculous ones with my friends.
-* As a full stack developer, I want to create a database to store and access user's created finished games so that they may access them later.
-* As a full stack developer, I want to use server-side technologies to persist content from the client to our database so that users can retrieve unfinished work.
-* As a full stack developer, I want to use EJS to efficiently render user input in modular, reusable templates that will serve as views to the user.
-* As a web designer, I want to create a mobile-first approach to my design to allow all users from all devices to access and interact with my site.
-* As a user, I want to be able to submit suggested templates so that users have more options to entertain themselves and each other.
-* As a user, I want to be able to share a link to other people which takes them to the completed story I have created.
-* As a user, I want to be able to have the option to type in a word, or press a button that will randomly generate one for me.
-* As a user, I want a clean, simple UI so that I can easily navigate through the app.
-
-### Stretch Goals
-
-> Play a narration of the games in Morgan Freeman's voice.
-> Hit an external API for random word generation for all blanks/required parts of speech.
-> Tag templates with category assignments, so users can browse templates by topic.
->>>>>>> Add user stories and stretch goals
