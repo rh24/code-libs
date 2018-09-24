@@ -35,13 +35,13 @@ This project is available as open source under the terms of the [MIT License](ht
 * Discuss the conflict amongst ourselves and work to resolve the issues with the parties concerned.
 
 > How will you raise concerns to members who are not adequately contributing?</br>
-* Discuss the idea of the inadequite contributions with that person and work to find out what that person can contribute to the pverall project.
+* Discuss the idea of the inadequate contributions with that person and work to find out what that person can contribute to the overall project.
 
 > What is your process to resolve conflicts?</br>
 * We will Discuss the initial problem/conflict. Look at the possible available solutions then vote to see what the best one would be.
 
 > How and when will you escalate the conflict if your attempts are unsuccessful?</br>
-* After the first attempt, the person can try to bring in another teammate to help defuse the situation. If it is unsuccessful, that person should esculate the issue to the instructor.
+* After the first attempt, the person can try to bring in another teammate to help defuse the situation. If it is unsuccessful, that person should escalate the issue to the instructor.
 
 ### Communication Plan
 
@@ -61,7 +61,7 @@ Our goal is to make a simple word game that brings an on paper childhood favorit
 ### User Stories
 
 * As a developer, I want to create a game that will delight potential employers so that they might hire us.
-* As a developer, I want to make a join table of data showing finished games for each template so that users can view games by template and see what other contributors came up with.
+* As a developer, I want to make a table of data showing finished games for each template so that users can view games by template and see what other contributors came up with.
 * As a mad libs player, I want to have a good laugh at my stories and have them presented to me in a fun way.
 * As a lurker, I want to browse other people's finished games so that I can share ridiculous ones with my friends.
 * As a full stack developer, I want to create a database to store and access user's created finished games so that they may access them later.
@@ -78,20 +78,12 @@ Our goal is to make a simple word game that brings an on paper childhood favorit
 * 5 seeded templates in the database.
 * Create a form page which will receive the user inputs for use in the templates.
 * Users will POST the game to the database when complete or wish to save.
-* Users will PUT/update games if incomplete.
 * After completing the game, a new page will display the filled out template with the words selected by the user previously.
 * There will be a button on the completed game display page to start a new game.
-* If our app detects not all 10 spaces are filled out, upon submit, it will save the game, NOT show the template.
-* Users can add their own templates. Each one must contain exactly 10 blanks. The two column form will be structured so that the left input is a part of the skeleton, and the right input will be a dropdown select menu with parts of speech.
-* Each game is associated with a username.
 * Each game has a shareable link.
-* Users can save their answers mid-game and come back to it later.
-* Game table has a title, user's name, shareable link, selected 10 words, date created, votes, foreign key for template. (Belongs to template)
-* Template table has a title, game skeleton w/ 10 EJS <%= %> in one long string, a creator, votes. (has many games).
-* Keyword has a name. (each keyword has many templates and templates have many keywords).
-* template_keyword join table will have template id foriegn key & keyword id foreign key.
+* Game table has a title, user's name, 10 word columns, date created, foreign key for template. (Belongs to template)
+* Template table has a title, game skeleton w/ 10 EJS `<%= %>` in one long string, 10 labels (label1, label2, etc. .. ) a creator. (has many games).
 * game_template join table will allow us to see all data re: completed games in relation to each unique template.</br></br>
-
 * Create an “About Us” page within the application that lists details about the developers.
 * Use proper SMACSS file structure for styling the application with a clean theme styled mobile-first.
 * Ensure that state is persisted between the pages used.
@@ -101,5 +93,8 @@ Our goal is to make a simple word game that brings an on paper childhood favorit
 
 > Play a narration of the games in Morgan Freeman's voice.</br></br>
 > Hit an external API for random word generation for all blanks/required parts of speech.</br></br>
-> Tag templates with keyword assignments, so users can search templates by keyword.</br></br>
-> All users can assign keywords to templates.</br></br>
+> Create new templates.</br></br>
+> Users can add their own templates. Each one must contain exactly 10 blanks. The two column form will be structured so that the left input is a part of the skeleton, and the right input will be a dropdown select menu with parts of speech.</br></br>
+> Users will PUT/update games if incomplete.</br></br>
+> If our app detects not all 10 spaces are filled out, upon submit, it will save the game, NOT show the template.</br></br>
+> Users can save their answers mid-game and come back to it later.
