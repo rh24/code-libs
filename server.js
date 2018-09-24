@@ -24,6 +24,10 @@ app.get('/', (req, res) => {
   res.send('hello world!');
 });
 
+app.get('/libs', (req, res) => {
+  res.render('index');
+});
+
 app.get('*', (req, res, next) => {
   const err = new Error(`the route ${req.originalUrl} does not exist.`);
   err.statusCode = 404;
