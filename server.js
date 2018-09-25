@@ -121,18 +121,19 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
   const values = [req.params.id, req.params.game_id];
 
   client.query(SQL, values, (err, result) => {
-    if (err) {
+    if (!result.rows) {
       console.log(err);
       next(err);
     } else {
       const game = result.rows[0];
+      // console.log(game);
       const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created } = game;
       const words = { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created };
       // console.log(words);
 
       const story = ejs.render(result.rows[0].template_body, words);
-      // if (req.query.success) story.success = true;
-      // console.log(story);
+      if (req.query.success) story.success = true;
+      console.log(story);
       res.render('pages/games/show', { story, title, username, date_created, success: true });
     }
   });
