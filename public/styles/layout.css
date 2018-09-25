@@ -1,14 +1,16 @@
-.main-nav {
+.nav-container {
   background-color: #3e3c3d;
 }
 
-.main-nav div {
+.main-nav {
   width: 70%;
   margin: 0 auto;
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
 }
 
-.main-nav div img {
+.main-nav img {
   align-self: center;
+  padding: 15px;
 }

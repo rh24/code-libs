@@ -1,11 +1,22 @@
-<div class="main-nav">
-  <div>
+<div class="nav-container">
+  <div class="main-nav">
     <img src="/img/codelibs_main_logo.png" width="200px">
     <div class="main-menu">
-        <a href="#">Home</a><p>|</p>
-        <a href="#">Play</a><p>|</p>
-        <a href="#">Browse</a><p>|</p>
-        <a href="#">About</a>
+        <a class="menu-link" href="#">Home</a>
+        <span>
+          <a class="menu-link" href="#" class='drop-down'>Play</a>
+          <div class="play-drop-down">
+              <span>
+                <a class="menu-link" href="#">Random</a>
+              </span>
+              <span>
+                <a class="menu-link" href="#">Pick</a>
+              </span>
+          </div>
+        </span>
+        <a class="menu-link" href="#">Browse</a>
+        <a class="menu-link" href="#">About</a>
+        
     </div>
   </div>
 </div>
