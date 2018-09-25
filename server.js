@@ -43,14 +43,27 @@ app.get('/libs', (req, res) => {
       console.log(err);
       next(err);
     } else {
-      // console.log(result);
+      const templatesArr = result.rows.map(dataSet => ({ title: dataSet.title, author: dataSet.username, id: dataSet.id }));
+
+      res.render('pages/libs/index', { templates: templatesArr });
+    }
+  });
+});
+
+app.get('/libs/:id', (req, res) => {
+  const SQL = `SELECT * FROM stretch_templates WHERE stretch_templates.id = $1;`;
+  const values = [req.params.id];
+
+  client.query(SQL, values, (err, result, next) => {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
       // map <%= %> to be _______;
       const compiledBlanks = result.rows.map(dataSet => {
         const blanks = { lib_1: '_', lib_2: '_', lib_3: '_', lib_4: '_', lib_5: '_', lib_6: '_', lib_7: '_', lib_8: '_', lib_9: '_', lib_10: '_' };
         return ejs.render(dataSet.template_body, blanks);
       });
-      console.log(compiledBlanks);
-      res.render('pages/libs/index', { compiledBlanks });
     }
   });
 });
@@ -137,7 +150,6 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
       next(err);
     } else {
       const game = result.rows[0];
-      // console.log(game);
       const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created } = game;
       const words = { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created };
       // console.log(words);
