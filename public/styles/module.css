@@ -1,0 +1,8 @@
+nav p {
+
+}
+
+.main-menu {
+  display: flex;
+  flex-direction: column;
+}

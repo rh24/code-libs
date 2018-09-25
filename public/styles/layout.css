@@ -1,0 +1,12 @@
+.main-nav {
+  background-color: #3e3c3d;
+}
+
+.main-nav div {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.main-nav div img {
+  max-width: 50%;
+}
