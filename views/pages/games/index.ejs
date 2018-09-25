@@ -1,2 +1,11 @@
-<h1>All completed games for <%= template.title %></h1>
+<%- include('../../partials/layout/head', { page_title: 'Game Index' }) %>
 
+<h1>All completed games for <%= title %></h1>
+
+<div class="completed-game">
+  <% games.forEach(game => { %>
+    <p><%= game %></p>
+  <% }) %>
+</div>
+
+<%- include('../../partials/layout/tail', { footer: 'Test footer' }) %>
