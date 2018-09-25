@@ -76,6 +76,8 @@ app.get('/libs/:id/games', (req, res, next) => {
       const games = result.rows.map(dataSet => {
         const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10 } = dataSet;
         const libs = { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10 };
+
+        console.log(dataSet);
         return ejs.render(dataSet.template_body, libs);
       });
       console.log(games);

@@ -36,7 +36,7 @@ INSERT INTO stretch_templates (
   'Welcome to CodeLibs',
   'Official',
   '9/24/2018',
-  'Hi <%= lib_1 %>, welcome to <%= lib_2 %>, we are so <%= lib_3 %> to have you here! We hope you enjoy our <%= lib_4 %><%= lib_5 %>. Please feel free to <%= lib_6 %> the <%= lib_7 %> and dont forget to <%= lib_8 %>. We hope you have a <%= lib_9 %><%= lib_10 %>',
+  'Hi <%= lib_1 %>, welcome to <%= lib_2 %>, we are so <%= lib_3 %> to have you here! We hope you enjoy our <%= lib_4 %> <%= lib_5 %>. Please feel free to <%= lib_6 %> the <%= lib_7 %> and dont forget to <%= lib_8 %>. We hope you have a <%= lib_9 %> <%= lib_10 %>',
   'name',
   'location',
   'adjective',
