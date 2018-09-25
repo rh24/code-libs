@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS games (
 );
 
 INSERT INTO games (username, date_created, template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) 
-<<<<<<< HEAD
+
 VALUES ('richard', '9/24/2018', 1, 'COLD', 'HEART', 'FINGERS', 'RUMMAGING', 'COMPUTER', 'DANUL', 'HE', 'PUPPY', 'SWIMS', 'HOME');
 
 INSERT INTO games (username, date_created, template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) 
@@ -25,6 +25,6 @@ VALUES ('rebecca', '9/24/2018', 1, 'TENSE', 'BODY', 'EYES', 'SCANNING', 'FILES',
 
 INSERT INTO games (username, date_created, template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) 
 VALUES ('rebecca', '9/24/2018', 2, 'BADGER', 'DELAWARE', 'SCREAMED', 'RIVER', 'REBECCA', 'SCREAMING', 'HAMSTERS', 'EAT', 'FORK', 'ARMPITS');
-=======
+
 VALUES ('richard', '9/24/2018', 1, 'hi', 'this', 'is', 'a', 'test', 'of', 'our', 'madlib', 'please', 'work');
->>>>>>> dc41b8c41aedb92b4de9fa816ca06d4d5a12313c
+g
