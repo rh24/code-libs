@@ -1,0 +1,14 @@
+.main-nav {
+  background-color: #3e3c3d;
+}
+
+.main-nav div {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+}
+
+.main-nav div img {
+  align-self: center;
+}
