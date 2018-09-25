@@ -45,26 +45,9 @@ app.get('/libs', (req, res) => {
   });
 });
 
-app.get('/libs/:id/games', (req, res, next) => {
-  const SQL = `SELECT * FROM templates JOIN games on templates.id = games.id WHERE templates.id = $1;`;
-  const values = [req.params.id];
-
-  client.query(SQL, values, (err, result) => {
-    if (err) {
-      console.log(err);
-      next(err);
-    } else {
-      res.render('pages/games/index', {
-        template: result.rows[0],
-        games: result.rows
-      });
-    }
-  });
-});
-
 //displaying form for user inputs into template
 app.get('/libs/:id/games/new', (req, res, next) => {
-  const SQL = 'SELECT * FROM templates WHERE id = $1';
+  const SQL = 'SELECT * FROM stretch_templates WHERE id = $1';
   const values = [req.params.id];
   client.query(SQL, values, (err, result) => {
     if (!result.rows[0]) {
@@ -72,13 +55,12 @@ app.get('/libs/:id/games/new', (req, res, next) => {
       next(err);
     } else {
       res.render('pages/games/new', {
-        template: result.rows[0],
-        page_title: 'New Game!',
+        template: result.rows[0]
       });
-    };
+    }
   });
 });
-  
+
 app.get('/libs/:id/games', (req, res, next) => {
   const SQL = `SELECT * FROM stretch_templates JOIN stretch_games on stretch_templates.id = stretch_games.stretch_template_id WHERE stretch_templates.id = $1;`;
   const values = [req.params.id];
@@ -87,13 +69,15 @@ app.get('/libs/:id/games', (req, res, next) => {
       console.log(err);
       next(err);
     } else {
-    // console.log(result.rows);
-    const title = result.rows[0].title;
-    // map to compiled ejs template
-    const games = result.rows.map(dataSet => {
-      const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10 } = dataSet;
-      const libs = { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10 };
-      return ejs.render(dataSet.template_body, libs);
+      // console.log(result.rows);
+      const title = result.rows[0].title;
+      // map to compiled ejs template
+      const games = result.rows.map(dataSet => {
+        const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10 } = dataSet;
+        const libs = { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10 };
+
+        console.log(dataSet);
+        return ejs.render(dataSet.template_body, libs);
       });
       console.log(games);
       res.render('pages/games/index', { games, title });
@@ -103,7 +87,7 @@ app.get('/libs/:id/games', (req, res, next) => {
 
 //entering inputs from form into database and returning id to display filled out template.
 app.post('/libs/:id/games', (req, res, next) => {
-  let SQL = `INSERT INTO games (username, date_created, template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id;`;
+  let SQL = `INSERT INTO stretch_games (username, date_created, stretch_template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id;`;
   let rightNow = new Date().toDateString();
   const values = [
     req.body.username,
@@ -136,19 +120,21 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
   const values = [req.params.id, req.params.game_id];
 
   client.query(SQL, values, (err, result) => {
-    if (err) {
+    if (!result.rows) {
       console.log(err);
       next(err);
     } else {
       const game = result.rows[0];
+      // console.log(game);
       const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created } = game;
       const words = { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created };
       // console.log(words);
 
       const story = ejs.render(result.rows[0].template_body, words);
-      if (req.query.success) story.success = true;
-      // console.log(story);
-      res.render('pages/games/show', { story, title, username, date_created });
+      let ejsObj = { story, title, username, date_created, success: false };
+      if (req.query.success) ejsObj.success = true;
+      console.log(story);
+      res.render('pages/games/show', ejsObj);
     }
   });
 });

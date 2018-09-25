@@ -2,9 +2,11 @@
 
 <h1>All completed games for <%= title %></h1>
 
-<div class="completed-game">
+<div class="completed-games">
   <% games.forEach(game => { %>
-    <p><%= game %></p>
+    <div class="completed-game">
+      <p><%= game %></p>
+    </div>
   <% }) %>
 </div>
 
