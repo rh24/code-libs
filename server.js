@@ -8,6 +8,7 @@ const env = require('dotenv').config();
 const PORT = process.env.PORT;
 const conString = process.env.DATABASE_URL;
 const app = express();
+const methodOverride = require('method-override');
 
 const client = new pg.Client(conString);
 client.connect();
@@ -18,6 +19,15 @@ client.on('error', error => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
+
+app.use(methodOverride(function (req, res) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    var method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
+}));
 
 app.set('view engine', 'ejs');
 
@@ -131,10 +141,24 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
       // console.log(words);
 
       const story = ejs.render(result.rows[0].template_body, words);
-      let ejsObj = { story, title, username, date_created, success: false };
+      let ejsObj = { story, title, username, date_created, success: false, template_id: req.params.id, game_id: req.params.game_id };
       if (req.query.success) ejsObj.success = true;
       console.log(story);
       res.render('pages/games/show', ejsObj);
+    }
+  });
+});
+
+app.delete('/libs/:id/games/:game_id', (req, res, next) => {
+  const SQL = 'DELETE FROM stretch_games WHERE stretch_games.id = $1';
+  const values = [req.params.game_id];
+
+  client.query(SQL, values, (err) => {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
+      res.redirect(`/libs/${req.params.id}/games?success=true`);
     }
   });
 });

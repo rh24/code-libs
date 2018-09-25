@@ -5,7 +5,7 @@
 <h2><%= date_created %></h2>
 
 <%= story %>
-
+<%- include('../../partials/layout/delete', { template_id, game_id }) %>
 <%= success %>
 
 <%- include('../../partials/layout/tail', { footer: 'Test footer' }) %>
