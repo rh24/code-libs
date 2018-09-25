@@ -50,13 +50,12 @@ app.get('/libs/:id/games/new', (req, res, next) => {
   const SQL = 'SELECT * FROM stretch_templates WHERE id = $1';
   const values = [req.params.id];
   client.query(SQL, values, (err, result) => {
-    if (err) {
+    if (!result.rows[0]) {
       console.log(err);
       next(err);
     } else {
       res.render('pages/games/new', {
-        template: result.rows[0],
-        page_title: 'New Game!',
+        template: result.rows[0]
       });
     }
   });
@@ -86,7 +85,7 @@ app.get('/libs/:id/games', (req, res, next) => {
 
 //entering inputs from form into database and returning id to display filled out template.
 app.post('/libs/:id/games', (req, res, next) => {
-  let SQL = `INSERT INTO games (username, date_created, template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id;`;
+  let SQL = `INSERT INTO stretch_games (username, date_created, template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id;`;
   let rightNow = new Date().toDateString();
   const values = [
     req.body.username,
