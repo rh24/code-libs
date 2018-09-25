@@ -3,7 +3,10 @@
 <h1><%= template.title %></h1>
 
   <form action="/libs/<%=template.id%>/games" method="POST">
-    <input type="hidden" name="username" value="<%=username%>">
+    <div>
+      <label for="username">User Name: </label>
+      <input type="text" id="username" name="username">
+    </div>
     <div>
       <label for="lib_1"><%= template.label_1 %>: </label>
       <input type="text" id="lib_1" name="lib_1">
@@ -47,4 +50,3 @@
     <button>Submit CodeLib!</button>
   </form>
 
-  <%- include('../../partials/layout/tail') -%>

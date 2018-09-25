@@ -73,8 +73,6 @@ app.get('/libs/:id/new', (req, res, next) => {
       res.render('pages/games/new', {
         template: result.rows[0],
         page_title: 'New Game!',
-        footer: 'this is a footer',
-        username: 'Valentina Jovavich'
       });
     }
   });
