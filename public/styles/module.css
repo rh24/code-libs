@@ -37,11 +37,12 @@
 
 .hamburger {
   float: right;
-  padding: 20px;
+  padding: 40px 20px 0px 0px;
+
 }
 
 .play-drop-down {
-  display: block;
+  display: none;
   position: relative;
   background-color: #3e3c3d;
   border-radius: 0px 0px 10px 10px; 
