@@ -1,7 +1,11 @@
 <%- include('../../partials/layout/head', { page_title: 'Lib Index' }) %>
 <h1>All Libs</h1>
 
-<% compiledBlanks.forEach(template => { %>
-  <%= template %>
-<% }) %>
+<div class="blank-templates">
+  <% compiledBlanks.forEach(template => { %>
+    <div class="blank-template">
+      <%= template %>
+    </div>
+  <% }) %>
+</div>
 <%- include('../../partials/layout/tail', { footer: 'test' }) %>
