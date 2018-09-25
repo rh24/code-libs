@@ -26,8 +26,23 @@ app.get('/', (req, res) => {
 });
 
 app.get('/libs', (req, res) => {
-  const SQL =
-    res.render('index');
+  const SQL = `SELECT * FROM stretch_templates;`;
+
+  client.query(SQL, (err, result, next) => {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
+      // console.log(result);
+      // map <%= %> to be _______;
+      const compiledBlanks = result.rows.map(dataSet => {
+        const blanks = { lib_1: '_', lib_2: '_', lib_3: '_', lib_4: '_', lib_5: '_', lib_6: '_', lib_7: '_', lib_8: '_', lib_9: '_', lib_10: '_' };
+        return ejs.render(dataSet.template_body, blanks);
+      });
+      console.log(compiledBlanks);
+      res.render('pages/libs/index', { compiledBlanks });
+    }
+  });
 });
 
 app.get('/libs/:id/games/new', (req, res) => {
@@ -55,7 +70,7 @@ app.get('/libs/:id/games', (req, res, next) => {
       console.log(err);
       next(err);
     } else {
-      console.log(result.rows);
+      // console.log(result.rows);
       const title = result.rows[0].title;
       // map to compiled ejs template
       const games = result.rows.map(dataSet => {
@@ -64,6 +79,7 @@ app.get('/libs/:id/games', (req, res, next) => {
 
         return ejs.render(dataSet.template_body, libs);
       });
+      console.log(games);
       res.render('pages/games/index', { games, title });
     }
   });
