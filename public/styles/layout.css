@@ -1,8 +1,30 @@
-.nav-container {
-  background-color: #3e3c3d;
+body {
+  background-image: url('/img/paper.png');
 }
 
-.main-nav img {
+main {
+  padding: 0px 8%;
+  margin: 0 auto;
+}
+
+.nav-container {
+  background-color: #3e3c3d;
+  min-width: 310px;
+}
+
+.main-nav > img {
   align-self: center;
   padding: 15px 0px 15px 20px;
+  max-width: 200px;
+}
+
+footer {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  bottom: 0px;
+  height: 50px;
+  background-color: #3e3c3d;
+  padding-top: 25px;
+  color: whitesmoke;
 }

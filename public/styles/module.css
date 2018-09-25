@@ -28,6 +28,7 @@
   background-color: orange;
   height: 100vh;
   display: none;
+  z-index: 2;
 }
 
 .main-menu a {
@@ -46,6 +47,11 @@
   border-radius: 0px 0px 10px 10px; 
 }
 
+.mobile-spacer {
+  display: block;
+  height: 50px;
+}
+
 .close-menu-arrow {
   position: absolute;
   bottom: 20px;
@@ -54,6 +60,10 @@
 }
 
 @media (min-width: 800px) {
+  main {
+    max-width: 960px;
+  }
+
   .main-menu {
     background-color: inherit;
     display: flex;
