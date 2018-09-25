@@ -25,7 +25,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/libs', (req, res) => {
-  res.render('index');
+  const SQL =
+    res.render('index');
 });
 
 app.get('/libs/:id/games/new', (req, res) => {
@@ -45,7 +46,7 @@ app.get('/libs/:id/games/new', (req, res) => {
 });
 
 app.get('/libs/:id/games', (req, res, next) => {
-  const SQL = `SELECT * FROM templates JOIN games on templates.id = games.id WHERE templates.id = $1;`;
+  const SQL = `SELECT * FROM templates JOIN games on templates.id = games.template_id WHERE templates.id = $1;`;
   const values = [req.params.id];
 
   client.query(SQL, values, (err, result) => {
@@ -53,6 +54,7 @@ app.get('/libs/:id/games', (req, res, next) => {
       console.log(err);
       next(err);
     } else {
+      console.log(result.rows);
       res.render('pages/games/index', {
         template: result.rows[0],
         games: result.rows
@@ -98,9 +100,36 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
       console.log(err);
       next(err);
     } else {
+      const game = result.rows[0];
+      const { title, username, date_created, template_1, template_2, template_3, template_4, template_5, template_6, template_7, template_8, template_9, template_10, template_11, label_1, label_2, label_3, label_4, label_5, label_6, label_7, label_8, label_9, label_10 } = game;
+
       let ejs = {
         game: result.rows[0],
-        success: false
+        success: false,
+        title,
+        username,
+        date_created,
+        template_1,
+        template_2,
+        template_3,
+        template_4,
+        template_5,
+        template_6,
+        template_7,
+        template_8,
+        template_9,
+        template_10,
+        template_11,
+        label_1,
+        label_2,
+        label_3,
+        label_4,
+        label_5,
+        label_6,
+        label_7,
+        label_8,
+        label_9,
+        label_10
       };
 
       if (req.query.success) ejs.success = true;

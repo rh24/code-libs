@@ -1,2 +1,7 @@
 <h1>All completed games for <%= template.title %></h1>
 
+<div class="completed-game">
+  <% games.forEach(game => { %>
+    <p><%= game.template_1 %> <%= game.lib_1 %> <%= game.template_2 %> <%= game.lib_2 %> <%= game.template_3 %> <%= game.lib_3 %> <%= game.template_4 %> <%= game.lib_4 %> <%= game.template_5 %> <%= game.lib_5 %> <%= game.template_6 %> <%= game.lib_6 %> <%= game.template_7 %> <%= game.lib_7 %> <%= game.template_8 %> <%= game.lib_8 %> <%= game.template_9 %> <%= game.lib_9 %> <%= game.template_10 %> <%= game.lib_10 %> <%= game.template_11 %></p>
+  <% }) %>
+</div>
