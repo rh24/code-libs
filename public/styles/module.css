@@ -1,8 +1,20 @@
-nav p {
+.main-menu a, .main-menu p {
+  padding: 20px;
+  text-decoration: none;
+  color: aliceblue;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.15em;
+}
 
+.main-menu a:first-of-type {
+  color: orange;
 }
 
 .main-menu {
   display: flex;
-  flex-direction: column;
+}
+
+.main-menu a:hover {
+  color: orange;
 }
