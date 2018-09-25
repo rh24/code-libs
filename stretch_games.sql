@@ -17,4 +17,7 @@ CREATE TABLE IF NOT EXISTS stretch_games (
 );
 
 INSERT INTO stretch_games (username, date_created, stretch_template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) 
-VALUES ('rebecca', '9/24/2018', 2, 'BEDS', 'POST', 'PENCILS', 'DANUL', 'SLEEPING', 'SOFT', 'COMPUTER', 'CUP', 'SINGING', 'LOUDLY');
+VALUES ('rebecca', '9/24/2018', 2, 'BEDS', 'POST', 'PENCILS', 'DANUL', 'SLEEPING', 'SOFT', 'COMPUTER', 'CUP', 'SINGING', 'LOUD');
+
+INSERT INTO stretch_games (username, date_created, stretch_template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) 
+VALUES ('richard', '9/24/2018', 2, 'COMPUTERS', 'GET', 'STICKERS', 'DANUL', 'WAVES', 'QUIET', 'COFFEE', 'MUG', 'RUNS', 'FAR');
