@@ -37,7 +37,7 @@ app.get('/libs/:id/games/new', (req, res) => {
       console.log(err);
       res.render('pages/error', { err });
     } else {
-      res.render('pages/templates/show', {
+      res.render('pages/libs/show', {
         template: result.rows[0]
       });
     }
@@ -45,8 +45,20 @@ app.get('/libs/:id/games/new', (req, res) => {
 });
 
 app.get('/libs/:id/games', (req, res, next) => {
-  const SQL = `SELECT * FROM templates JOIN games on templates.id = games.id`;
+  const SQL = `SELECT * FROM templates JOIN games on templates.id = games.id WHERE templates.id = $1;`;
+  const values = [req.params.id];
 
+  client.query(SQL, values, (err, result) => {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
+      res.render('pages/games/index', {
+        template: result.rows[0],
+        games: result.rows
+      });
+    }
+  });
 });
 
 app.post('/libs/:id/games', (req, res, next) => {
