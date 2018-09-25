@@ -131,9 +131,10 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
       // console.log(words);
 
       const story = ejs.render(result.rows[0].template_body, words);
-      if (req.query.success) story.success = true;
+      let ejsObj = { story, title, username, date_created, success: false };
+      if (req.query.success) ejsObj.success = true;
       console.log(story);
-      res.render('pages/games/show', { story, title, username, date_created, success: true });
+      res.render('pages/games/show', ejsObj);
     }
   });
 });
