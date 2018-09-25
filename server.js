@@ -28,22 +28,6 @@ app.get('/libs', (req, res) => {
   res.render('index');
 });
 
-app.get('/libs/:id/games/new', (req, res) => {
-  const SQL = `SELECT * FROM templates WHERE id = $1`;
-  const values = [req.params.id];
-
-  client.query(SQL, values, (err, result) => {
-    if (err) {
-      console.log(err);
-      res.render('pages/error', { err });
-    } else {
-      res.render('pages/libs/show', {
-        template: result.rows[0]
-      });
-    }
-  });
-});
-
 app.get('/libs/:id/games', (req, res, next) => {
   const SQL = `SELECT * FROM templates JOIN games on templates.id = games.id WHERE templates.id = $1;`;
   const values = [req.params.id];
@@ -62,7 +46,7 @@ app.get('/libs/:id/games', (req, res, next) => {
 });
 
 //displaying form for user inputs into template
-app.get('/libs/:id/new', (req, res, next) => {
+app.get('/libs/:id/games/new', (req, res, next) => {
   const SQL = 'SELECT * FROM templates WHERE id = $1';
   const values = [req.params.id];
   client.query(SQL, values, (err, result) => {
