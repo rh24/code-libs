@@ -1,0 +1,50 @@
+<%- include('../../partials/layout/head') -%>
+
+<h1><%= template.title %></h1>
+
+  <form action="/libs/<%=template.id%>/games" method="POST">
+    <input type="hidden" name="username" value="<%=username%>">
+    <div>
+      <label for="lib_1"><%= template.label_1 %>: </label>
+      <input type="text" id="lib_1" name="lib_1">
+    </div>
+    <div>
+      <label for="lib_2"><%= template.label_2 %>: </label>
+      <input type="text" id="lib_2" name="lib_2">
+    </div>
+    <div>
+      <label for="lib_3"><%= template.label_3 %>: </label>
+      <input type="text" id="lib_3" name="lib_3">
+    </div>
+    <div>
+      <label for="lib_4"><%= template.label_4 %>: </label>
+      <input type="text" id="lib_4" name="lib_4">
+    </div>
+    <div>
+      <label for="lib_5"><%= template.label_5 %>: </label>
+      <input type="text" id="lib_5" name="lib_5">
+    </div>
+    <div>
+      <label for="lib_6"><%= template.label_6 %>: </label>
+      <input type="text" id="lib_6" name="lib_6">
+    </div>
+    <div>
+      <label for="lib_7"><%= template.label_7 %>: </label>
+      <input type="text" id="lib_7" name="lib_7">
+    </div>
+    <div>
+      <label for="lib_8"><%= template.label_8 %>: </label>
+      <input type="text" id="lib_8" name="lib_8">
+    </div>
+    <div>
+      <label for="lib_9"><%= template.label_9 %>: </label>
+      <input type="text" id="lib_9" name="lib_9">
+    </div>
+    <div>
+      <label for="lib_10"><%= template.label_10 %>: </label>
+      <input type="text" id="lib_10" name="lib_10">
+    </div>
+    <button>Submit CodeLib!</button>
+  </form>
+
+  <%- include('../../partials/layout/tail') -%>
