@@ -49,7 +49,7 @@ app.get('/libs/:id/games', (req, res, next) => {
   const values = [req.params.id];
 
   client.query(SQL, values, (err, result) => {
-    if (err) {
+    if (!result.rows[0]) {
       console.log(err);
       next(err);
     } else {
