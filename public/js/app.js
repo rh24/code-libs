@@ -9,6 +9,9 @@ $('.play-drop-down').on('mouseleave', function () {
 });
 
 $('#mobile-play').on('click', function () {
-  $('.play-drop-down').slideDown();
+  $('.play-drop-down').slideToggle();
 });
 
+$('.hamburger').on('click', ()=> {
+  $('.main-menu').show('slide', {direction: 'right'}, 250);
+});

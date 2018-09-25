@@ -27,10 +27,16 @@
   top: 0;
   background-color: orange;
   height: 100vh;
+  display: none;
 }
 
 .main-menu a {
   display: block;
+}
+
+.hamburger {
+  float: right;
+  padding: 20px;
 }
 
 .play-drop-down {
@@ -40,6 +46,13 @@
   border-radius: 0px 0px 10px 10px; 
 }
 
+.close-menu-arrow {
+  position: absolute;
+  bottom: 20px;
+  width: 55px;
+  margin-left: 20px;
+}
+
 @media (min-width: 800px) {
   .main-menu {
     background-color: inherit;
@@ -47,6 +60,10 @@
     align-items: baseline;
     position: static;
     height: auto;
+  }
+
+  .close-menu-arrow, .hamburger, #mobile-play, .play-drop-down {
+    display: none;
   }
 
   .main-nav {
@@ -60,7 +77,6 @@
     position: absolute;
     top: 60px;
     padding-top: 60px;
-    display: none;
     z-index: 1;
   }
 
@@ -70,9 +86,5 @@
 
   .drop-down, #mobile-hide {
     display: block;
-  }
-
-  #mobile-play {
-    display: none;
   }
 }
