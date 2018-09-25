@@ -50,13 +50,12 @@ app.get('/libs/:id/games/new', (req, res, next) => {
   const SQL = 'SELECT * FROM stretch_templates WHERE id = $1';
   const values = [req.params.id];
   client.query(SQL, values, (err, result) => {
-    if (err) {
+    if (!result.rows[0]) {
       console.log(err);
       next(err);
     } else {
       res.render('pages/games/new', {
-        template: result.rows[0],
-        page_title: 'New Game!',
+        template: result.rows[0]
       });
     }
   });
