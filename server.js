@@ -86,7 +86,7 @@ app.get('/libs/:id/games', (req, res, next) => {
 
 //entering inputs from form into database and returning id to display filled out template.
 app.post('/libs/:id/games', (req, res, next) => {
-  let SQL = `INSERT INTO games (username, date_created, template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id;`;
+  let SQL = `INSERT INTO stretch_games (username, date_created, stretch_template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id;`;
   let rightNow = new Date().toDateString();
   const values = [
     req.body.username,
@@ -129,9 +129,9 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
       // console.log(words);
 
       const story = ejs.render(result.rows[0].template_body, words);
-      if (req.query.success) story.success = true;
+      // if (req.query.success) story.success = true;
       // console.log(story);
-      res.render('pages/games/show', { story, title, username, date_created });
+      res.render('pages/games/show', { story, title, username, date_created, success: true });
     }
   });
 });
