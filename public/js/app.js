@@ -1,11 +1,14 @@
 'use strict';
 
 $('.drop-down').on('mouseenter', () => {
-  $('.play-drop-down').show();
+  $('.play-drop-down').slideDown(200);
 })
 
 $('.play-drop-down').on('mouseleave', function () {
-  $(this).fadeOut(100);
+  $(this).slideUp(200);
 });
 
-// $('.drop-down')
+$('#mobile-play').on('click', function () {
+  $('.play-drop-down').slideDown();
+});
+
