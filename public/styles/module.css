@@ -1,8 +1,9 @@
+
+
 .menu-link {
   padding: 20px 40px;
   text-decoration: none;
-  color: aliceblue;
-  font-family: sans-serif;
+  color: var(--secondary-color);
   font-weight: bold;
   font-size: 1.15em;
   width: 60px;
@@ -13,7 +14,7 @@
 }
 
 .menu-link:hover {
-  background-color: orange;
+  background-color: var(--tertiary-color);
 }
 
 .drop-down {
@@ -25,7 +26,7 @@
   position: fixed;
   right: 0;
   top: 0;
-  background-color: orange;
+  background-color: var(--tertiary-color);
   height: 100vh;
   display: none;
   z-index: 2;
@@ -44,7 +45,7 @@
 .play-drop-down {
   display: none;
   position: relative;
-  background-color: #3e3c3d;
+  background-color: var(--primary-color);
   border-radius: 0px 0px 10px 10px; 
 }
 
@@ -103,6 +104,28 @@
 .blank-template {
   margin: 20px;
 }
+
+.button{
+  display: inline-block;
+  text-decoration: none;
+  color: var(--primary-color);
+  background-color: var(--quaternary-color);
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin: 25px 25px;
+  box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
+}
+
+.button:hover {
+  background-color: var(--tertiary-color);
+}
+
+.main_page{
+  text-align: center;
+}
+
+.main_page p {
+  font-size: 1.25em;
 
 .completed-game {
   margin-bottom: 50px;

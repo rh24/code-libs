@@ -1,14 +1,27 @@
+:root {
+  --primary-color: #3e3c3d;
+  --secondary-color: aliceblue;
+  --tertiary-color: orange;
+  --quaternary-color: #aec9da;
+}
+
 body {
   background-image: url('/img/paper.png');
+  font-family: 'Poppins', sans-serif;
+  color: var(--primary-color);
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 
 main {
   padding: 0px 8%;
   margin: 0 auto;
+  flex: 1;
 }
 
 .nav-container {
-  background-color: #3e3c3d;
+  background-color: var(--primary-color);
   min-width: 250px;
   box-shadow: 2px 2px 7px 3px rgba(0, 0, 0, 0.20);
   margin-bottom: 10vh;
@@ -21,12 +34,11 @@ main {
 }
 
 footer {
-  position: fixed;
   width: 100%;
   text-align: center;
   bottom: 0px;
   height: 50px;
-  background-color: #3e3c3d;
+  background-color: var(--primary-color);
   padding-top: 25px;
-  color: whitesmoke;
+  color: var(--secondary-color);
 }
