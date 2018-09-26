@@ -142,21 +142,6 @@ app.get('/libs/:id/games', (req, res, next) => {
         gameObj.id = dataSet.id;
 
         return gameObj;
-
-        // why doesn't this work? i get the same game every time
-        // let { username, date_created, stretch_template_id, id } = dataSet;
-        // let data = [username, date_created, stretch_template_id, id];
-        // let gameObj = Object.assign(this, [username, date_created, stretch_template_id, id] = data);
-        // let libs = {};
-
-        // for (let prop in dataSet) {
-        //   if (prop.includes('lib')) libs[prop] = dataSet[prop];
-        // }
-
-        // const body = ejs.render(dataSet.template_body, libs);
-        // gameObj.body = body;
-
-        // return gameObj;
       });
       console.log(games);
       res.render('pages/games/index', { games, title, allGamesRoute: false });
