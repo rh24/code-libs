@@ -49,6 +49,10 @@ app.get('/random', (req, res) => {
   });
 });
 
+app.get('/about', (req, res) => {
+  res.render('pages/about');
+});
+
 app.get('/libs', (req, res) => {
   const SQL = `SELECT * FROM stretch_templates;`;
 
