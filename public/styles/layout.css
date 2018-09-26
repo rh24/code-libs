@@ -15,7 +15,7 @@ body {
 }
 
 main {
-  padding: 0px 8%;
+  padding: 0px 8% 10% 8%;
   margin: 0 auto;
   flex: 1;
 }
