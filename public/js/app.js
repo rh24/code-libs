@@ -32,6 +32,12 @@ $('#share').on('click', () => {
 
   // debugger;
   $('#share-link').val(pageUrl);
+  toggleModal();
+
+  $('#copy').on('click', () => {
+    $('#share-link').select();
+    document.execCommand('copy');
+  });
 });
 
 function toggleModal() {
