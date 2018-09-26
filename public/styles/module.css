@@ -261,19 +261,7 @@ text-align: center;
   padding: 20px;
 }
 
-.share-modal {
-  width: 100vw;
-  position: absolute;
-  height: 100%;
-  bottom: 0;
-  top: 0;
-  /* background-color: rgba(0, 0, 0, .5); */
-  justify-content: center;
-}
-
-.share-box {
-  /* width: 30%;
-  height: 25%; */
-  background-color: white;
-  justify-content: center;
+p.user-date {
+  font-size: .9em;
+  font-style: italic;
 }
