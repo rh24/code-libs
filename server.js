@@ -50,32 +50,6 @@ app.get('/libs', (req, res) => {
   });
 });
 
-app.get('/libs/:id', (req, res) => {
-  const SQL = `SELECT * FROM stretch_templates WHERE stretch_templates.id = $1;`;
-  const values = [req.params.id];
-
-  client.query(SQL, values, (err, result, next) => {
-    if (err) {
-      console.log(err);
-      next(err);
-    } else {
-      let template = {};
-
-      result.rows.forEach(dataSet => {
-        const blanks = { lib_1: '_', lib_2: '_', lib_3: '_', lib_4: '_', lib_5: '_', lib_6: '_', lib_7: '_', lib_8: '_', lib_9: '_', lib_10: '_' };
-
-        template.compiledBlanks = ejs.render(dataSet.template_body, blanks);
-        template.title = dataSet.title;
-        template.author = dataSet.username;
-      });
-
-      console.log(template);
-      // make it an object and have a title and author
-      res.render('pages/libs/show', { template });
-    }
-  });
-});
-
 //displaying form for user inputs into template
 app.get('/libs/:id/games/new', (req, res, next) => {
   const SQL = 'SELECT * FROM stretch_templates WHERE id = $1';
