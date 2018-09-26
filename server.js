@@ -36,13 +36,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/random', (req, res) => {
-  // let SQL = 'SELECT id FROM stretch_templates';
   client.query('SELECT id FROM stretch_templates', (err, result) => {
     if (err) {
       console.log(err);
       next(err);
     } else {
-      const allTemplates = result.rows.map( obj => obj.id);
+      const allTemplates = result.rows.map(obj => obj.id);
       let rand = allTemplates[Math.floor(Math.random() * allTemplates.length)];
       res.redirect(`/libs/${rand}/games/new`);
     }
@@ -72,8 +71,6 @@ app.get('/games', (req, res, next) => {
       console.log(err);
       next(err);
     } else {
-      // console.log(result.rows);
-
       // map to compiled ejs template
       const games = result.rows.map(dataSet => {
         let gameObj = {};
@@ -134,7 +131,7 @@ app.get('/libs/:id/games', (req, res, next) => {
         for (let prop in dataSet) {
           if (prop.includes('lib')) libs[prop] = dataSet[prop];
         }
-        // console.log(dataSet);
+
         const body = ejs.render(dataSet.template_body, libs);
 
         gameObj.body = body;
@@ -209,7 +206,6 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
       const game = result.rows[0];
       const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created } = game;
       const words = { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created };
-      // console.log(words);
 
       const story = ejs.render(result.rows[0].template_body, words);
       let ejsObj = { story, title, username, date_created, success: false, template_id: req.params.id, game_id: req.params.game_id };
