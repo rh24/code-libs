@@ -29,4 +29,7 @@ $(window).resize(function () {
 $('#share').on('click', () => {
   let pageUrl = $(location).attr('href');
   console.log(pageUrl);
+
+  // debugger;
+  $('#share-link').val(pageUrl);
 });
