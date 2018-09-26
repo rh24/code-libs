@@ -154,8 +154,10 @@ text-align: center;
 
 .success-message {
   background-color: rgb(180, 229, 157);
+  color: green;
+  text-align: center;
   border: 1px solid green;
-  border-radius: 25% 10%;
+  border-radius: 25px;
   margin: 0 auto;
   padding: 20px;
 }
