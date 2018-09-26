@@ -151,3 +151,11 @@ text-align: center;
   padding: .5em 1em;
   margin: .5em 0;
 }
+
+.success-message {
+  background-color: rgb(180, 229, 157);
+  border: 1px solid green;
+  border-radius: 25% 10%;
+  margin: 0 auto;
+  padding: 20px;
+}
