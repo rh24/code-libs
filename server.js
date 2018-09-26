@@ -76,6 +76,7 @@ app.get('/games', (req, res, next) => {
       next(err);
     } else {
       // map to compiled ejs template
+      console.log(result.rows[0]);
       const games = result.rows.map(dataSet => {
         let gameObj = {};
         let libs = {};
@@ -83,7 +84,7 @@ app.get('/games', (req, res, next) => {
         for (let prop in dataSet) {
           if (prop.includes('lib')) libs[prop] = dataSet[prop];
         }
-        console.log(dataSet);
+        // console.log(dataSet);
         const body = ejs.render(dataSet.template_body, libs);
 
         gameObj.body = body;
@@ -95,7 +96,7 @@ app.get('/games', (req, res, next) => {
 
         return gameObj;
       });
-      console.log(games);
+      // console.log(games);
       res.render('pages/games/index', { games, allGamesRoute: true });
     }
   });
@@ -147,7 +148,7 @@ app.get('/libs/:id/games', (req, res, next) => {
 
         return gameObj;
       });
-      console.log(games);
+      // console.log(games);
       res.render('pages/games/index', { games, title, allGamesRoute: false });
     }
   });
