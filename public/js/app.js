@@ -28,12 +28,13 @@ $(window).resize(function () {
 
 function toggleModal(id) {
   $(`#${id}`).toggleClass('modal-show');
+}
 
 $('#share').on('click', () => {
   let pageUrl = $(location).attr('href');
 
   $('#share-link').val(pageUrl);
-  toggleModal('INSERT ID HERE REBECCA');
+  toggleModal('share-modal');
 
   $('#copy').on('click', () => {
     $('#share-link').select();
@@ -41,7 +42,7 @@ $('#share').on('click', () => {
   });
 });
 
-$('.close-modal').on('click', function(e) {
+$('.close-modal').on('click', function (e) {
   toggleModal(e.delegateTarget.offsetParent.offsetParent.id);
 });
 
@@ -51,6 +52,6 @@ $('.modal-bg').click(function (e) {
   }
 });
 
-$('.prof-thumb').on('click', function(e) {
+$('.prof-thumb').on('click', function (e) {
   toggleModal(e.currentTarget.alt);
 });
