@@ -60,12 +60,18 @@
 }
 
 /* About us page */
+.about-us-title {
+  text-align: center;
+  padding-bottom: 50px;
+}
+
 .about-us-info {
   text-align: center;
 }
 
 .prof-thumb {
   max-width: 250px;
+  padding: 0px 20px;
 }
 
 .modal-items img {
@@ -98,12 +104,13 @@
   border-radius: 0.5rem;
   max-width: 80%;
   max-height: 80%;
+  overflow: auto;
 }
 
 .close-modal {
   float: right;
-  width: 1.5rem;
-  line-height: 1.5rem;
+  width: 2.5rem;
+  line-height: 2.5rem;
   text-align: center;
   cursor: pointer;
   border-radius: 0.25rem;
@@ -170,6 +177,28 @@
 
   .modal-items img {
     max-height: 450px;
+  }
+
+  .modal-items h1 {
+    margin: 80px 0px 0px;
+  }
+
+  .modal-items h4 {
+    margin: 0px 0px 35px;
+    font-size: 0.8em;
+  }
+
+  .modal-items h4 span {
+    font-style: italic;
+  }
+
+  .modal-items div a {
+    position: absolute;
+    bottom: 55px;
+  }
+
+  .modal-items div {
+    padding: 10px 20px 20px 35px;
   }
 }
 
