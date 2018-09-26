@@ -1,7 +1,23 @@
 <%- include('../partials/layout/head', { page_title: 'About Us' }) %>
 
-<img src="/img/rebecca_tumb.png" width="250px">
-<img src="/img/rich_tumb.png" width="250px">
-<img src="/img/danul_tumb.png" width="250px">
+<div class="about-us-info">
+  <img class="rebClick prof-thumb" src="/img/rebecca_tumb.png">
+  <img class="prof-thumb"src="/img/rich_tumb.png">
+  <img class="prof-thumb" src="/img/danul_tumb.png">
+</div>
+
+<div class="modal-bg" id="rebecca">
+  <div class="modal-items">
+    <img src="/img/rebecca_cropped2.jpg">
+    <div>
+      <span class="close-modal">&times;</span>
+      <h1>Recebba Hong</h1>
+      <p>Mechanical Engineer and Software Developer. Always looking 
+        to combine news skills my engineering background, and transfer them to real-world 
+        applications.</p>
+        <a href="https://www.linkedin.com/in/danul-de-leon/">Connect with me on Linkedin</a>
+    </div>
+  </div>
+</div>
 
 <%- include('../partials/layout/tail', { footer: 'Test footer' }) %>

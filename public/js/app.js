@@ -25,3 +25,19 @@ $(window).resize(function() {
     $('.main-menu').removeAttr('style');
   }
 });
+
+function toggleModal() {
+  $('.modal-bg').toggleClass('modal-show');
+}
+
+$('.close-modal').on('click', toggleModal);
+
+$('.modal-bg').click(function(e) {
+  if (e.target == this) {
+    toggleModal();
+  }
+});
+
+$('.rebClick').on('click', () => {
+  $('#rebecca').toggleClass('modal-show');
+});
