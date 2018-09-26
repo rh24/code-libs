@@ -26,18 +26,20 @@ $(window).resize(function() {
   }
 });
 
-function toggleModal() {
-  $('.modal-bg').toggleClass('modal-show');
+function toggleModal(id) {
+  $(`#${id}`).toggleClass('modal-show');
 }
 
-$('.close-modal').on('click', toggleModal);
+$('.close-modal').on('click', function(e) {
+  toggleModal(e.delegateTarget.offsetParent.offsetParent.id);
+});
 
 $('.modal-bg').click(function(e) {
   if (e.target == this) {
-    toggleModal();
+    toggleModal(e.delegateTarget.id);
   }
 });
 
-$('.rebClick').on('click', () => {
-  $('#rebecca').toggleClass('modal-show');
+$('.prof-thumb').on('click', function(e) {
+  toggleModal(e.currentTarget.alt);
 });
