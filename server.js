@@ -59,11 +59,19 @@ app.get('/libs/:id', (req, res) => {
       console.log(err);
       next(err);
     } else {
-      // map <%= %> to be _______;
-      const compiledBlanks = result.rows.map(dataSet => {
+      let template = {};
+
+      result.rows.forEach(dataSet => {
         const blanks = { lib_1: '_', lib_2: '_', lib_3: '_', lib_4: '_', lib_5: '_', lib_6: '_', lib_7: '_', lib_8: '_', lib_9: '_', lib_10: '_' };
-        return ejs.render(dataSet.template_body, blanks);
+
+        template.compiledBlanks = ejs.render(dataSet.template_body, blanks);
+        template.title = dataSet.title;
+        template.author = dataSet.username;
       });
+
+      console.log(template);
+      // make it an object and have a title and author
+      res.render('pages/libs/show', { template });
     }
   });
 });
