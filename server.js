@@ -60,7 +60,7 @@ app.get('/libs', (req, res) => {
       console.log(err);
       next(err);
     } else {
-      const templatesArr = result.rows.map(dataSet => ({ title: dataSet.title, author: dataSet.username, id: dataSet.id }));
+      const templatesArr = result.rows.map(dataSet => ({ title: dataSet.title, author: dataSet.author, id: dataSet.id }));
 
       res.render('pages/libs/index', { templates: templatesArr });
     }

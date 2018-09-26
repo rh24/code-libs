@@ -5,7 +5,8 @@
         <h3><%= game.title %></h3>
       <% } %>
       <p><%= game.body %></p>
-      <p>by: <%= game.username %></p>
+      <p class="user-date">by: <%= game.username %></p>
+      <p class="user-date">on: <%= game.date_created %></p>
     </div>
   <% }) %>
 </div>
