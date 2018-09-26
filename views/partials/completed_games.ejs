@@ -1,0 +1,11 @@
+<div class="completed-games">
+  <% games.forEach(game => { %>
+    <div class="completed-game">
+      <% if (allGamesRoute) { %>
+        <h3><%= game.title %></h3>
+      <% } %>
+      <p><%= game.body %></p>
+      <p>by: <%= game.username %></p>
+    </div>
+  <% }) %>
+</div>
