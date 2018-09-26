@@ -3,9 +3,10 @@
 <h1>All Libs</h1>
 
 <div class="blank-templates">
-  <% compiledBlanks.forEach(template => { %>
+  <% templates.forEach(template => { %>
     <div class="blank-template">
-      <%= template %>
+      <a href="/libs/<%=template.id%>"><%= template.title %></a>
+      <p>by: <%= template.author %></p>
     </div>
   <% }) %>
 </div>
