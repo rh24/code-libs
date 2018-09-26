@@ -1,13 +1,13 @@
 <%- include('../../partials/layout/head', { page_title: 'Lib Index' }) %>
 
-<h1>All Libs</h1>
+<h1 class="title">All Libs</h1>
 
 <div class="blank-templates">
   <% templates.forEach(template => { %>
-    <div class="blank-template">
-      <a href="/libs/<%=template.id%>/games/new"><%= template.title %></a>
+    <a class="blank-template" href="/libs/<%=template.id%>/games/new">
+      <h3 class="title"><%= template.title %></h3>
       <p>by: <%= template.author %></p>
-    </div>
+    </a>
   <% }) %>
 </div>
 
