@@ -204,6 +204,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
 
 .blank-template {
   display: inline-block;
