@@ -35,6 +35,20 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/random', (req, res) => {
+  // let SQL = 'SELECT id FROM stretch_templates';
+  client.query('SELECT id FROM stretch_templates', (err, result) => {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
+      const allTemplates = result.rows.map( obj => obj.id);
+      let rand = allTemplates[Math.floor(Math.random() * allTemplates.length)];
+      res.redirect(`/libs/${rand}/games/new`);
+    }
+  });
+});
+
 app.get('/libs', (req, res) => {
   const SQL = `SELECT * FROM stretch_templates;`;
 
