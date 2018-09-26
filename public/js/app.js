@@ -26,11 +26,14 @@ $(window).resize(function () {
   }
 });
 
+function toggleModal(id) {
+  $(`#${id}`).toggleClass('modal-show');
+
 $('#share').on('click', () => {
   let pageUrl = $(location).attr('href');
 
   $('#share-link').val(pageUrl);
-  toggleModal();
+  toggleModal('INSERT ID HERE REBECCA');
 
   $('#copy').on('click', () => {
     $('#share-link').select();
@@ -38,18 +41,16 @@ $('#share').on('click', () => {
   });
 });
 
-function toggleModal() {
-  $('.modal-bg').toggleClass('modal-show');
-}
-
-$('.close-modal').on('click', toggleModal);
+$('.close-modal').on('click', function(e) {
+  toggleModal(e.delegateTarget.offsetParent.offsetParent.id);
+});
 
 $('.modal-bg').click(function (e) {
   if (e.target == this) {
-    toggleModal();
+    toggleModal(e.delegateTarget.id);
   }
 });
 
-$('.rebClick').on('click', () => {
-  $('#rebecca').toggleClass('modal-show');
+$('.prof-thumb').on('click', function(e) {
+  toggleModal(e.currentTarget.alt);
 });

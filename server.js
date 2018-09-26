@@ -148,7 +148,7 @@ app.get('/libs/:id/games', (req, res, next) => {
 
         return gameObj;
       });
-      console.log(games);
+      // console.log(games);
       res.render('pages/games/index', { games, title, allGamesRoute: false });
     }
   });

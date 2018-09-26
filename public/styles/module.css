@@ -162,13 +162,10 @@
   .play-drop-down div {
     padding: 10px 0px;
   }
-
+  
   .drop-down, #mobile-hide {
     display: block;
   }
-}
-
-@media (min-width: 800px) {
   .modal-items {
     display: flex;
     width: 700px;
@@ -202,11 +199,37 @@
   }
 }
 
-.blank-template {
-  margin: 20px;
+.blank-templates {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.button{
+.blank-template {
+  display: inline-block;
+  width: 200px;
+  height: 205px;
+  padding: 5px;
+  margin: 5%;
+  border-radius: 5px;
+  background-color: var(--quaternary-color);
+  opacity: .9;
+  text-align: center;
+  box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.blank-template:hover{
+  background-color: var(--tertiary-color);
+}
+
+.blank-template h3{
+  margin-top: 25%;
+}
+
+.button {
   display: inline-block;
   text-decoration: none;
   color: var(--primary-color);
@@ -221,7 +244,7 @@
   background-color: var(--tertiary-color);
 }
 
-.main_page{
+.main_page {
   text-align: center;
 }
 
@@ -235,19 +258,19 @@
   background-color: rgba(255, 255, 255, 1)
 }
 
-.title{
+.title {
   text-align: center;
 }
 
-.lib_form{
+.lib_form {
 text-align: center;
 }
 
-.lib_form label{
+.lib_form label {
   display: none;
 }
 
-.lib_form input{
+.lib_form input {
   width: 75%;
   padding: .5em 1em;
   margin: .5em 0;
@@ -255,8 +278,10 @@ text-align: center;
 
 .success-message {
   background-color: rgb(180, 229, 157);
+  color: green;
+  text-align: center;
   border: 1px solid green;
-  border-radius: 25% 10%;
+  border-radius: 25px;
   margin: 0 auto;
   padding: 20px;
 }
