@@ -50,6 +50,42 @@ app.get('/libs', (req, res) => {
   });
 });
 
+app.get('/games', (req, res, next) => {
+  const SQL = `SELECT * FROM stretch_games JOIN stretch_templates ON stretch_games.stretch_template_id = stretch_templates.id;`;
+
+  client.query(SQL, (err, result) => {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
+      // console.log(result.rows);
+
+      // map to compiled ejs template
+      const games = result.rows.map(dataSet => {
+        let gameObj = {};
+        let libs = {};
+
+        for (let prop in dataSet) {
+          if (prop.includes('lib')) libs[prop] = dataSet[prop];
+        }
+        console.log(dataSet);
+        const body = ejs.render(dataSet.template_body, libs);
+
+        gameObj.body = body;
+        gameObj.title = dataSet.title;
+        gameObj.username = dataSet.username;
+        gameObj.date_created = dataSet.date_created;
+        gameObj.stretch_template_id = dataSet.stretch_template_id;
+        gameObj.id = dataSet.id;
+
+        return gameObj;
+      });
+      console.log(games);
+      res.render('pages/games/index', { games, allGamesRoute: true });
+    }
+  });
+});
+
 //displaying form for user inputs into template
 app.get('/libs/:id/games/new', (req, res, next) => {
   const SQL = 'SELECT * FROM stretch_templates WHERE id = $1';
@@ -74,20 +110,45 @@ app.get('/libs/:id/games', (req, res, next) => {
       console.log(err);
       next(err);
     } else {
-      // console.log(result.rows);
-      const title = result.rows[0].title;
+      let { title } = result.rows[0];
+
       // map to compiled ejs template
       const games = result.rows.map(dataSet => {
+        let gameObj = {};
         let libs = {};
 
         for (let prop in dataSet) {
           if (prop.includes('lib')) libs[prop] = dataSet[prop];
         }
+        // console.log(dataSet);
+        const body = ejs.render(dataSet.template_body, libs);
 
-        return ejs.render(dataSet.template_body, libs);
+        gameObj.body = body;
+        gameObj.title = dataSet.title;
+        gameObj.username = dataSet.username;
+        gameObj.date_created = dataSet.date_created;
+        gameObj.stretch_template_id = dataSet.stretch_template_id;
+        gameObj.id = dataSet.id;
+
+        return gameObj;
+
+        // why doesn't this work? i get the same game every time
+        // let { username, date_created, stretch_template_id, id } = dataSet;
+        // let data = [username, date_created, stretch_template_id, id];
+        // let gameObj = Object.assign(this, [username, date_created, stretch_template_id, id] = data);
+        // let libs = {};
+
+        // for (let prop in dataSet) {
+        //   if (prop.includes('lib')) libs[prop] = dataSet[prop];
+        // }
+
+        // const body = ejs.render(dataSet.template_body, libs);
+        // gameObj.body = body;
+
+        // return gameObj;
       });
-
-      res.render('pages/games/index', { games, title });
+      console.log(games);
+      res.render('pages/games/index', { games, title, allGamesRoute: false });
     }
   });
 });

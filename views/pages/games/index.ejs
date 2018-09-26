@@ -1,13 +1,11 @@
 <%- include('../../partials/layout/head', { page_title: 'Game Index' }) %>
 
-<h1>All completed games for <%= title %></h1>
-
-<div class="completed-games">
-  <% games.forEach(game => { %>
-    <div class="completed-game">
-      <p><%= game %></p>
-    </div>
-  <% }) %>
-</div>
+<% if (!allGamesRoute) { %>
+  <h1>All completed games for <%= title %></h1>
+  <%- include('../../partials/completed_games', { games }) %>
+<% } else { %>
+  <h1>Browse all games for all templates</h1>
+  <%- include('../../partials/completed_games', { games, allGamesRoute }) %>
+<% } %>
 
 <%- include('../../partials/layout/tail', { footer: 'Test footer' }) %>
