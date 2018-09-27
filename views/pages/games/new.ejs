@@ -1,12 +1,12 @@
 <%- include('../../partials/layout/head', { page_title: 'New Game' }) %>
 
 <h1 class="title">"<%= template.title %>"</h1>
-<h3 class="title">Template By: <%=template.username%></h3>
+<h3 class="title">Template By: <%=template.author%></h3>
 
   <form class="lib_form" action="/libs/<%=template.id%>/games" method="POST">
     <div>
       <label for="username">Your Name: </label>
-      <input type="text" id="username" name="username" placeholder="Your Name" requried>
+      <input type="text" id="username" name="username" placeholder="Your Name" required>
     </div>
     <div>
       <label for="lib_1"><%= template.label_1 %>: </label>
