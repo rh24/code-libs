@@ -13,7 +13,7 @@
 
   <div class="flex-button">
     <a href="/libs/<%= template_id %>/games/new" class="button">Replay this story</a>
-    <%- include('../../partials/layout/delete', { template_id, game_id }) %>
+    <%- include('../../partials/layout/delete', { url: url, trashcan: false }) %>
     <a href="/libs" class="button">Pick a different story</a>
     <button id="share" class="button">Share</button>
   </div>

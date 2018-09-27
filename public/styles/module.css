@@ -165,6 +165,7 @@
   text-decoration: none;
   color: var(--primary-color);
   transition:all 0.3s ease;
+  position: relative;
 }
 
 .blank-template:hover{
@@ -174,6 +175,20 @@
 
 .blank-template h3{
   margin-top: 25%;
+}
+
+.delete-icon {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 4px;
+  bottom: 5px;
+  
+}
+
+.delete-icon:hover{
+  cursor: pointer;
+  transform: scale(1.2);
 }
 
 .button {

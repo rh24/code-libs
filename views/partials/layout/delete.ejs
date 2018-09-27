@@ -1,4 +1,8 @@
-<form action="/libs/<%=template_id%>/games/<%=game_id%>" method="POST" >
+<form action="<%=url%>" method="POST" >
     <input type="hidden" name="_method" value="DELETE">
-    <button class="button">Delete!</button>
+    <% if (trashcan) { %>
+        <button class="delete-icon"><img src="../../img/trash-can.png" alt="trash-can.png"></button>
+    <% } else { %>
+        <button class="button">Delete!</button>        
+    <% } %>
 </form>
