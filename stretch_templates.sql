@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS stretch_templates (
   id SERIAL PRIMARY KEY,
   title TEXT,
-  username VARCHAR(256),
+  author VARCHAR(256),
   date_created TEXT,
   template_body TEXT,
   label_1 TEXT,
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS stretch_templates (
 
 INSERT INTO stretch_templates (
   title,
-  username,
+  author,
   date_created,
   template_body,
   label_1,
@@ -51,7 +51,7 @@ INSERT INTO stretch_templates (
 
 INSERT INTO stretch_templates (
   title,
-  username,
+  author,
   date_created,
   template_body,
   label_1,

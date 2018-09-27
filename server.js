@@ -74,7 +74,7 @@ app.get('/games', (req, res, next) => {
     if (err) {
       console.log(err);
       next(err);
-    } else {
+    } else if (result.rows.length) {
       // map to compiled ejs template
       console.log(result.rows);
       const games = result.rows.map(dataSet => {
@@ -96,8 +96,9 @@ app.get('/games', (req, res, next) => {
 
         return gameObj;
       });
-      // console.log(games);
-      res.render('pages/games/index', { games, allGamesRoute: true });
+      res.render('pages/games/index', { games, noGames: false, allGamesRoute: true });
+    } else {
+      res.render('pages/games/index', { noGames: true, title: null });
     }
   });
 });
@@ -127,7 +128,6 @@ app.get('/libs/:id/games', (req, res, next) => {
     if (result.rows.length) {
       // if template exists, but no games presently played, render partial and trigger below function
       renderGamesIndex(req, res, next, result);
-      console.log('hi');
     } else {
       next(err);
     }
