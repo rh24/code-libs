@@ -14,10 +14,12 @@ $('#mobile-play').on('click', function () {
 
 $('.hamburger').on('click', () => {
   $('.main-menu').show('slide', { direction: 'right' }, 250);
+  $('#close-side-menu').toggleClass('modal-show');
 });
 
 $('.close-menu-arrow').on('click', () => {
   $('.main-menu').hide('slide', { direction: 'right' }, 250);
+  $('#close-side-menu').toggleClass('modal-show');
 });
 
 $(window).resize(function () {
@@ -49,6 +51,7 @@ $('.close-modal').on('click', function (e) {
 $('.modal-bg').click(function (e) {
   if (e.target === this) {
     toggleModal(e.delegateTarget.id);
+    $('.main-menu').hide('slide', { direction: 'right' }, 250);
   }
 });
 
