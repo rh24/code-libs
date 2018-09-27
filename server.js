@@ -65,6 +65,50 @@ app.get('/libs', (req, res) => {
   });
 });
 
+app.post('/libs', (req, res, next) => {
+  const SQL = `INSERT INTO stretch_templates (
+  title,
+  author,
+  date_created,
+  template_body,
+  label_1,
+  label_2,
+  label_3, 
+  label_4,
+  label_5,
+  label_6,
+  label_7,
+  label_8,
+  label_9,
+  label_10)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);`;
+  const rightNow = new Date().toDateString();
+  const values = [
+    req.body.title,
+    req.body.author,
+    rightNow,
+    req.body.template_body,
+    req.body.label_1,
+    req.body.label_2,
+    req.body.label_3,
+    req.body.label_4,
+    req.body.label_5,
+    req.body.label_6,
+    req.body.label_7,
+    req.body.label_8,
+    req.body.label_9,
+    req.body.label_10
+  ];
+
+  client.query(SQL, values, (err) => {
+    if (err) {
+      next(err);
+    }
+
+    res.redirect(`/libs?success=true`);
+  });
+});
+
 app.get('/libs/new', (req, res, next) => {
   // how do i detect an error in here and pass to next? do I have to?
   res.render('pages/libs/new');
@@ -209,10 +253,10 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
       next(err);
     } else {
       const game = result.rows[0];
-      const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created } = game;
+      const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created, template_body } = game;
       const words = { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created };
 
-      const story = ejs.render(result.rows[0].template_body, words);
+      const story = ejs.render(template_body, words);
       let ejsObj = { story, title, username, date_created, success: false, template_id: req.params.id, game_id: req.params.game_id };
       if (req.query.success) ejsObj.success = true;
       res.render('pages/games/show', ejsObj);
