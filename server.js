@@ -180,7 +180,7 @@ app.post('/libs/:id/games', (req, res, next) => {
       next(err);
     }
 
-    // res.redirect(`/libs/${req.params.id}/games/${result.rows[0].id}?success=true`);
+    res.redirect(`/libs/${req.params.id}/games/${result.rows[0].id}?success=true`);
   });
 });
 
