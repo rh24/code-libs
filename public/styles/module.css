@@ -222,6 +222,7 @@
 }
 
 .blank-template:hover{
+  cursor: pointer;
   background-color: var(--tertiary-color);
 }
 
@@ -241,6 +242,7 @@
 }
 
 .button:hover {
+  cursor: pointer;
   background-color: var(--tertiary-color);
 }
 
@@ -258,6 +260,11 @@ main h1 {
   text-align: center;
 }
 
+
+.completed-games {
+  margin: 20px;
+}
+
 .completed-game {
   margin-bottom: 40px;
   padding: 20px;
@@ -265,8 +272,9 @@ main h1 {
   box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
 }
 
-.completed-games {
-  margin: 20px;
+.completed-game:hover {
+  cursor: pointer;
+  background-color: var(--quaternary-color);
 }
 
 .title {
