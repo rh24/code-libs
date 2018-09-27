@@ -165,7 +165,7 @@ function renderGamesIndex(req, res, next, result) {
         return gameObj;
       });
 
-      res.render('pages/games/index', { games, title, allGamesRoute: false });
+      res.render('pages/games/index', { games, title, noGames: false, allGamesRoute: false });
     } else {
       res.render('pages/games/index', { title, noGames: true });
     }
