@@ -5,17 +5,19 @@
   font-weight: bold;
   font-size: 1.15em;
   width: 60px;
+  transition:all 0.15s ease;
+}
+
+.menu-link:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 #mobile-hide {
   display: none;
 }
 
-.menu-link:hover {
-  background-color: var(--tertiary-color);
-}
-
-.drop-down {
+#mobile-hide {
   position: relative;
   z-index: 2;
 }
@@ -44,7 +46,12 @@
   display: none;
   position: relative;
   background-color: var(--primary-color);
+  box-shadow: inset 0 0 10px #000000;
   border-radius: 0px 0px 10px 10px; 
+}
+
+.play-drop-down a:hover {
+  color: var(--tertiary-color);
 }
 
 .mobile-spacer {
@@ -72,6 +79,7 @@
 .prof-thumb {
   max-width: 250px;
   padding: 0px 20px;
+  transition:all 0.3s ease;
 }
 
 .modal-items img {
@@ -157,13 +165,14 @@
     top: 60px;
     padding-top: 60px;
     z-index: 1;
+    box-shadow: 0 0 0 0;
   }
 
   .play-drop-down div {
     padding: 10px 0px;
   }
   
-  .drop-down, #mobile-hide {
+  #mobile-hide {
     display: block;
   }
   .modal-items {
@@ -197,6 +206,15 @@
   .modal-items div {
     padding: 10px 20px 20px 35px;
   }
+
+  .menu-link:hover {
+    background-color: var(--tertiary-color);
+    color: var(--secondary-color);
+  }
+
+  .play-drop-down a:hover {
+    color: var(--secondary-color);
+  }
 }
 
 .blank-templates {
@@ -219,6 +237,7 @@
   box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
   text-decoration: none;
   color: var(--primary-color);
+  transition:all 0.3s ease;
 }
 
 .blank-template:hover{
@@ -237,6 +256,7 @@
   background-color: #51a9bc;
   border-radius: 5px;
   padding: 10px 20px;
+  transition:all 0.15s ease;
   margin: 7px 25px;
   box-shadow: 0 3px 2px 0 rgb(62,60,61, 0.25);
 }

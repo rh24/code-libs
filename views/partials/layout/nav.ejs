@@ -1,27 +1,34 @@
 <div class="nav-container">
   <div class="main-nav">
-    <img src="/img/codelibs_main_logo.png">
-    <div class="hamburger">
+    <a href="/"><img class="main-logo expand-hover" src="/img/codelibs_main_logo.png"></a>
+    <div class="hamburger expand-hover">
       <img src="/img/burger2.png" width="50px">
     </div>
     <div class="main-menu">
         <span class="mobile-spacer"></span>
-        <a class="menu-link" href="/">Home</a>
+        <%- include('../navlinks', { curpage: 'Home', link: '/' }) %> > Home </a>
         <span class="drop-down-group">
-          <a class="menu-link" id="mobile-play" href="#">Play</a>
-          <a class="menu-link drop-down" id="mobile-hide" href="#">Play</a>
+
+        <%- include('../navlinks', { curpage: 'New Game', link: '#' }) %> id="mobile-play" >Play</a>
+
+        <%- include('../navlinks', { curpage: 'New Game', link: '#' }) %> class="drop-down" id="mobile-hide" >Play</a>
+          
+          <!-- <a class="menu-link" id="mobile-play" href="#">Play</a>
+          <a class="menu-link drop-down" id="mobile-hide" href="#">Play</a> -->
           <div class="play-drop-down">
               <div>
-                <a class="menu-link" href="/random">Random</a>
+                <a class="menu-link expand-hover" href="/random">Random</a>
               </div>
               <div>
-                <a class="menu-link" href="/libs">Pick</a>
+                <a class="menu-link expand-hover" href="/libs">Pick</a>
               </div>
           </div>
         </span>
-        <a class="menu-link" href="/games">Browse</a>
-        <a class="menu-link" href="/about">About</a>
-        <img class="close-menu-arrow" src="/img/menu_arrow.png">
+        <%- include('../navlinks', { curpage: 'Browse Games', link: '/games' }) %> >Browse</a>
+        <%- include('../navlinks', { curpage: 'About Us', link: '/about' }) %> >About</a>
+        <!-- <a class="menu-link" href="/games">Browse</a> -->
+        <!-- <a class="menu-link" href="/about">About</a> -->
+        <img class="close-menu-arrow expand-hover" src="/img/menu_arrow.png">
         
     </div>
   </div>
