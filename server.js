@@ -36,13 +36,23 @@ app.get('/', (req, res) => {
 });
 
 app.get('/random', (req, res, next) => {
-  client.query('SELECT id FROM stretch_templates', (err, result) => {
-    if (err) {
-      next(err);
+  // check if there are any templates at all
+  const checkTemplates = `SELECT * FROM stretch_templates`;
+
+  client.query(checkTemplates, (err, result) => {
+    if (!result.rows.length) {
+      res.redirect('libs/new');
     } else {
-      const allTemplates = result.rows.map(obj => obj.id);
-      let rand = allTemplates[Math.floor(Math.random() * allTemplates.length)];
-      res.redirect(`/libs/${rand}/games/new`);
+      console.log(result);
+      client.query('SELECT id FROM stretch_templates', (err, result) => {
+        if (err) {
+          next(err);
+        } else {
+          const allTemplates = result.rows.map(obj => obj.id);
+          let rand = allTemplates[Math.floor(Math.random() * allTemplates.length)];
+          res.redirect(`/libs/${rand}/games/new`);
+        }
+      });
     }
   });
 });
@@ -65,12 +75,57 @@ app.get('/libs', (req, res) => {
   });
 });
 
+app.post('/libs', (req, res, next) => {
+  const SQL = `INSERT INTO stretch_templates (
+  title,
+  author,
+  date_created,
+  template_body,
+  label_1,
+  label_2,
+  label_3, 
+  label_4,
+  label_5,
+  label_6,
+  label_7,
+  label_8,
+  label_9,
+  label_10)
+  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);`;
+  const rightNow = new Date().toDateString();
+  const values = [
+    req.body.title,
+    req.body.author,
+    rightNow,
+    req.body.template_body,
+    req.body.label_1,
+    req.body.label_2,
+    req.body.label_3,
+    req.body.label_4,
+    req.body.label_5,
+    req.body.label_6,
+    req.body.label_7,
+    req.body.label_8,
+    req.body.label_9,
+    req.body.label_10
+  ];
+
+  client.query(SQL, values, (err) => {
+    if (err) {
+      next(err);
+    }
+
+    res.redirect(`/libs?success=true`);
+  });
+});
+
 app.get('/libs/new', (req, res, next) => {
   // how do i detect an error in here and pass to next? do I have to?
   res.render('pages/libs/new');
 });
 
 app.get('/games', (req, res, next) => {
+  // check if there are any games for that template
   const SQL = `SELECT * FROM stretch_templates JOIN stretch_games ON stretch_games.stretch_template_id = stretch_templates.id;`;
 
   client.query(SQL, (err, result) => {
@@ -85,7 +140,7 @@ app.get('/games', (req, res, next) => {
         for (let prop in dataSet) {
           if (prop.includes('lib')) libs[prop] = dataSet[prop];
         }
-
+        console.log(dataSet);
         const body = ejs.render(dataSet.template_body, libs);
 
         gameObj.body = body;
@@ -209,10 +264,10 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
       next(err);
     } else {
       const game = result.rows[0];
-      const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created } = game;
+      const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created, template_body } = game;
       const words = { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created };
 
-      const story = ejs.render(result.rows[0].template_body, words);
+      const story = ejs.render(template_body, words);
       let ejsObj = { story, title, username, date_created, success: false, template_id: req.params.id, game_id: req.params.game_id };
       if (req.query.success) ejsObj.success = true;
       ejsObj.url = `/libs/${ejsObj.template_id}/games/${ejsObj.game_id}`;

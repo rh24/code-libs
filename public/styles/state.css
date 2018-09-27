@@ -3,6 +3,10 @@
   cursor: pointer;
 }
 
+.add-pointer:hover {
+  cursor: pointer;
+}
+
 .currentPage { 
   color: var(--primary-color);
 }
