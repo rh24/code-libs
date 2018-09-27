@@ -355,9 +355,13 @@ p.user-date {
   font-style: italic;
 }
 
+.share-input {
+  width: 55%;
+  border-radius: 5px;
+  padding: 5px;
+}
 
-
-.title {
-  /* font-weight: bold;
-  font-style: italic; */
+.button.--modal {
+  width: 30%;
+  margin: 0 4%;
 }
