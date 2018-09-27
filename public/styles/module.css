@@ -6,6 +6,7 @@
   font-size: 1.15em;
   width: 60px;
   transition:all 0.15s ease;
+  border-radius: 10px 10px 0 0;
 }
 
 .menu-link:hover {
@@ -30,6 +31,10 @@
   height: 100vh;
   display: none;
   z-index: 2;
+}
+
+#drop-menu-item {
+  border-radius: 10px;
 }
 
 .main-menu a {

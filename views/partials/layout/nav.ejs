@@ -12,15 +12,13 @@
         <%- include('../navlinks', { curpage: 'New Game', link: '#' }) %> id="mobile-play" >Play</a>
 
         <%- include('../navlinks', { curpage: 'New Game', link: '#' }) %> class="drop-down" id="mobile-hide" >Play</a>
-          
-          <!-- <a class="menu-link" id="mobile-play" href="#">Play</a>
-          <a class="menu-link drop-down" id="mobile-hide" href="#">Play</a> -->
+
           <div class="play-drop-down">
               <div>
-                <a class="menu-link expand-hover" href="/random">Random</a>
+                <a class="menu-link expand-hover" id="drop-menu-item" href="/random">Random</a>
               </div>
               <div>
-                <a class="menu-link expand-hover" href="/libs">Pick</a>
+                <a class="menu-link expand-hover" id="drop-menu-item"  href="/libs">Pick</a>
               </div>
           </div>
         </span>
