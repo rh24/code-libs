@@ -1,0 +1,6 @@
+<% if (title) { %>
+  <h1>No completed games for <span class="title">"<a href="/libs/<%=id%>/games/new"><%= title %></a>"</span></h1>
+<% } else { %>
+  <h1>No completed games</h1>
+  <h1>Be the first to <a href="/random">play!</a></h1>
+<% } %>

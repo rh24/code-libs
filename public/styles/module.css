@@ -241,6 +241,7 @@
 }
 
 .blank-template:hover{
+  cursor: pointer;
   background-color: var(--tertiary-color);
 }
 
@@ -251,16 +252,17 @@
 .button {
   display: inline-block;
   text-decoration: none;
-  color: var(--primary-color);
-  background-color: var(--quaternary-color);
+  color: var(--secondary-color);
+  background-color: #51a9bc;
   border-radius: 5px;
   padding: 10px 20px;
-  margin: 25px 25px;
-  box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
   transition:all 0.15s ease;
+  margin: 7px 25px;
+  box-shadow: 0 3px 2px 0 rgb(62,60,61, 0.25);
 }
 
 .button:hover {
+  cursor: pointer;
   background-color: var(--tertiary-color);
 }
 
@@ -278,6 +280,11 @@ main h1 {
   text-align: center;
 }
 
+
+.completed-games {
+  margin: 20px;
+}
+
 .completed-game {
   margin-bottom: 40px;
   padding: 20px;
@@ -285,8 +292,9 @@ main h1 {
   box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
 }
 
-.completed-games {
-  margin: 20px;
+.completed-game:hover {
+  cursor: pointer;
+  background-color: var(--quaternary-color);
 }
 
 .title {
@@ -320,4 +328,9 @@ text-align: center;
 p.user-date {
   font-size: .9em;
   font-style: italic;
+}
+
+.title {
+  /* font-weight: bold;
+  font-style: italic; */
 }

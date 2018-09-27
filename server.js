@@ -2,7 +2,7 @@
 
 let ejs = require('ejs');
 const pg = require('pg');
-const superagent = require('superagent');
+// const superagent = require('superagent');
 const express = require('express');
 const env = require('dotenv').config();
 const PORT = process.env.PORT;
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
-app.use(methodOverride(function (req, res) {
+app.use(methodOverride(function (req) {
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     // look in urlencoded POST bodies and delete it
     var method = req.body._method;
@@ -35,10 +35,9 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/random', (req, res) => {
+app.get('/random', (req, res, next) => {
   client.query('SELECT id FROM stretch_templates', (err, result) => {
     if (err) {
-      console.log(err);
       next(err);
     } else {
       const allTemplates = result.rows.map(obj => obj.id);
@@ -57,7 +56,6 @@ app.get('/libs', (req, res) => {
 
   client.query(SQL, (err, result, next) => {
     if (err) {
-      console.log(err);
       next(err);
     } else {
       const templatesArr = result.rows.map(dataSet => ({ title: dataSet.title, author: dataSet.author, id: dataSet.id }));
@@ -67,16 +65,19 @@ app.get('/libs', (req, res) => {
   });
 });
 
+app.get('/libs/new', (req, res, next) => {
+  // how do i detect an error in here and pass to next? do I have to?
+  res.render('pages/libs/new');
+});
+
 app.get('/games', (req, res, next) => {
   const SQL = `SELECT * FROM stretch_templates JOIN stretch_games ON stretch_games.stretch_template_id = stretch_templates.id;`;
 
   client.query(SQL, (err, result) => {
     if (err) {
-      console.log(err);
       next(err);
-    } else {
+    } else if (result.rows.length) {
       // map to compiled ejs template
-      console.log(result.rows);
       const games = result.rows.map(dataSet => {
         let gameObj = {};
         let libs = {};
@@ -84,7 +85,7 @@ app.get('/games', (req, res, next) => {
         for (let prop in dataSet) {
           if (prop.includes('lib')) libs[prop] = dataSet[prop];
         }
-        // console.log(dataSet);
+
         const body = ejs.render(dataSet.template_body, libs);
 
         gameObj.body = body;
@@ -96,8 +97,9 @@ app.get('/games', (req, res, next) => {
 
         return gameObj;
       });
-      // console.log(games);
-      res.render('pages/games/index', { games, allGamesRoute: true });
+      res.render('pages/games/index', { games, noGames: false, allGamesRoute: true });
+    } else {
+      res.render('pages/games/index', { noGames: true, title: null });
     }
   });
 });
@@ -108,7 +110,6 @@ app.get('/libs/:id/games/new', (req, res, next) => {
   const values = [req.params.id];
   client.query(SQL, values, (err, result) => {
     if (!result.rows[0]) {
-      console.log(err);
       next(err);
     } else {
       res.render('pages/games/new', {
@@ -119,16 +120,30 @@ app.get('/libs/:id/games/new', (req, res, next) => {
 });
 
 app.get('/libs/:id/games', (req, res, next) => {
+  // check if libs/:id is in the db
+  const checkDb = `SELECT * FROM stretch_templates WHERE id = $1;`;
+  const id = [req.params.id];
+
+  client.query(checkDb, id, (err, result) => {
+    if (result.rows.length) {
+      // if template exists, but no games presently played, render partial and trigger below function
+      renderGamesIndex(req, res, next, result);
+    } else {
+      next(err);
+    }
+  });
+});
+
+function renderGamesIndex(req, res, next, result) {
   const SQL = `SELECT * FROM stretch_templates JOIN stretch_games on stretch_templates.id = stretch_games.stretch_template_id WHERE stretch_templates.id = $1;`;
   const values = [req.params.id];
-  client.query(SQL, values, (err, result) => {
-    if (!result.rows[0]) {
-      console.log(err);
-      next(err);
-    } else {
-      let { title } = result.rows[0];
+  let { title, id } = result.rows[0];
 
-      // map to compiled ejs template
+  client.query(SQL, values, (err, result) => {
+    if (err) {
+      next(err);
+    } else if (result.rows.length) {
+      // map to rendered ejs template
       const games = result.rows.map(dataSet => {
         let gameObj = {};
         let libs = {};
@@ -148,11 +163,13 @@ app.get('/libs/:id/games', (req, res, next) => {
 
         return gameObj;
       });
-      // console.log(games);
-      res.render('pages/games/index', { games, title, allGamesRoute: false });
+
+      res.render('pages/games/index', { games, title, noGames: false, allGamesRoute: false });
+    } else {
+      res.render('pages/games/index', { title, id, noGames: true });
     }
   });
-});
+}
 
 //entering inputs from form into database and returning id to display filled out template.
 app.post('/libs/:id/games', (req, res, next) => {
@@ -176,7 +193,6 @@ app.post('/libs/:id/games', (req, res, next) => {
 
   client.query(SQL, values, (err, result) => {
     if (err) {
-      console.log(err);
       next(err);
     }
 
@@ -190,7 +206,6 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
 
   client.query(SQL, values, (err, result) => {
     if (!result.rows) {
-      console.log(err);
       next(err);
     } else {
       const game = result.rows[0];
@@ -200,7 +215,6 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
       const story = ejs.render(result.rows[0].template_body, words);
       let ejsObj = { story, title, username, date_created, success: false, template_id: req.params.id, game_id: req.params.game_id };
       if (req.query.success) ejsObj.success = true;
-      console.log(story);
       res.render('pages/games/show', ejsObj);
     }
   });
@@ -212,7 +226,6 @@ app.delete('/libs/:id/games/:game_id', (req, res, next) => {
 
   client.query(SQL, values, (err) => {
     if (err) {
-      console.log(err);
       next(err);
     } else {
       res.redirect(`/libs/${req.params.id}/games?success=true`);
@@ -232,8 +245,9 @@ app.listen(PORT, () => {
   console.log(`we are listening on port ${PORT}!`);
 });
 
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
   console.log(err.message);
+  console.log(err);
   if (!err.statusCode) err.statusCode = 500;
 
   if (err.shouldRedirect) {
