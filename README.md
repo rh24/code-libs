@@ -1,12 +1,12 @@
 # Code Libs
 
-Code Libs is a full-stack web application that draws from both a mad libs API and user contributions to bring this phrasal template word game online for everyone's enjoyment. Users may share their game links with one another, save games for later, and contribute to each other's games.
+Code Libs is a full-stack web application that draws from both a mad libs API and user contributions to bring this phrasal template word game online for everyone's enjoyment. Users may share completed game links with one another and show off their results. Users may delete games from the database at the click of a button. This application does not have user authentication. Without user authentication, our app depends on a community managed database. Please, keep the funny games up!
 
-Additional features include the ability to upvote finished games and browse top-voted games by template. If the owner of the game is dissatisfied with their result, they may delete the game from the database at the click of a button. User's can choose not to save their end result as well and start on a different template instead.
+In the future, we hope to add the ability for users to save games for later as well as contribute to each other's games. We envision that incomplete games will be updated via PUT request.
 
-In the future, users will be able to query a word generating API to help them get unstuck on possible entries. Templates will be categorized by topic. Templates can have many keyword tags, and each keyword can have many templates.
+Additional features will include the ability to upvote finished games and browse top-voted games by template. ser's can choose not to save their end result as well and start on a different template instead.
 
-This application does not have user authentication.
+Other suggested features have been for users to be able to query a word generating API to help them get unstuck on possible entries. Templates may be categorized by topic. Templates can have many keyword tags, and each keyword can have many templates.
 
 ## Installation
 
