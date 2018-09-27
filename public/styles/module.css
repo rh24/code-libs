@@ -283,6 +283,7 @@ p.user-date {
   font-style: italic;
 }
 
+
 .random, .pick, .create {
   width: 280px;
   height: 100px;
@@ -316,6 +317,17 @@ p.user-date {
 
 .main_buttons a {
   text-decoration: none;
+}
+
+.share-input {
+  width: 55%;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.button.--modal {
+  width: 30%;
+  margin: 0 4%;
 }
 
 @media (min-width: 800px) {

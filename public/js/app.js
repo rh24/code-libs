@@ -33,7 +33,7 @@ function toggleModal(id) {
 }
 
 $('#share').on('click', () => {
-  let pageUrl = $(location).attr('href');
+  let pageUrl = $(location).attr('href').replace(/(\?success=true)/g, '');
 
   $('#share-link').val(pageUrl);
   toggleModal('share-modal');
@@ -65,4 +65,28 @@ $('.completed-game').on('click', (e) => {
   console.log(e.currentTarget.getAttribute('data-path'));
   const path = e.currentTarget.getAttribute('data-path');
   window.location = path;
+});
+
+const replaceBlanks = (split) => {
+  let i = 0;
+  let addedEjsCones = split.map(str => {
+    if (str.includes('_')) {
+      i++;
+      return str.replace(/[_]/g, `<%= lib_${i} %>`);
+    }
+
+    return str;
+  }).join('');
+
+  console.log(addedEjsCones);
+  $('#create-text').val(addedEjsCones);
+};
+
+$('#create-form').on('submit', function () {
+  let underScoreString = $('#create-text').val();
+  let split = underScoreString.split('');
+  let checkTen = split.reduce((acc, curr) => curr.includes('_') ? acc += 1 : acc, 0);
+  console.log(checkTen);
+
+  checkTen > 10 ? alert(`${checkTen - 10} too many blanks! Please, keep it to 10.`) : (checkTen < 10 ? alert(`Too few blanks! Add ${10 - checkTen} more!`) : replaceBlanks(split));
 });
