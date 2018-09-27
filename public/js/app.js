@@ -47,7 +47,7 @@ $('.close-modal').on('click', function (e) {
 });
 
 $('.modal-bg').click(function (e) {
-  if (e.target == this) {
+  if (e.target === this) {
     toggleModal(e.delegateTarget.id);
   }
 });
