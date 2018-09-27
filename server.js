@@ -2,7 +2,7 @@
 
 let ejs = require('ejs');
 const pg = require('pg');
-const superagent = require('superagent');
+// const superagent = require('superagent');
 const express = require('express');
 const env = require('dotenv').config();
 const PORT = process.env.PORT;
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./public'));
 
-app.use(methodOverride(function (req, res) {
+app.use(methodOverride(function (req) {
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     // look in urlencoded POST bodies and delete it
     var method = req.body._method;
@@ -63,6 +63,11 @@ app.get('/libs', (req, res) => {
       res.render('pages/libs/index', { templates: templatesArr });
     }
   });
+});
+
+app.get('/libs/new', (req, res, next) => {
+  // how do i detect an error in here and pass to next? do I have to?
+  res.render('pages/libs/new');
 });
 
 app.get('/games', (req, res, next) => {
@@ -132,7 +137,7 @@ app.get('/libs/:id/games', (req, res, next) => {
 function renderGamesIndex(req, res, next, result) {
   const SQL = `SELECT * FROM stretch_templates JOIN stretch_games on stretch_templates.id = stretch_games.stretch_template_id WHERE stretch_templates.id = $1;`;
   const values = [req.params.id];
-  let { title } = result.rows[0];
+  let { title, id } = result.rows[0];
 
   client.query(SQL, values, (err, result) => {
     if (err) {
@@ -161,7 +166,7 @@ function renderGamesIndex(req, res, next, result) {
 
       res.render('pages/games/index', { games, title, noGames: false, allGamesRoute: false });
     } else {
-      res.render('pages/games/index', { title, noGames: true });
+      res.render('pages/games/index', { title, id, noGames: true });
     }
   });
 }
@@ -240,7 +245,7 @@ app.listen(PORT, () => {
   console.log(`we are listening on port ${PORT}!`);
 });
 
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
   console.log(err.message);
   console.log(err);
   if (!err.statusCode) err.statusCode = 500;
