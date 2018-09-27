@@ -65,6 +65,11 @@ app.get('/libs', (req, res) => {
   });
 });
 
+app.get('/libs/new', (req, res, next) => {
+  // how do i detect an error in here and pass to next? do I have to?
+  res.render('pages/libs/new');
+});
+
 app.get('/games', (req, res, next) => {
   const SQL = `SELECT * FROM stretch_templates JOIN stretch_games ON stretch_games.stretch_template_id = stretch_templates.id;`;
 
