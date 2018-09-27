@@ -55,3 +55,11 @@ $('.modal-bg').click(function (e) {
 $('.prof-thumb').on('click', function (e) {
   toggleModal(e.currentTarget.alt);
 });
+
+$('.completed-game').on('click', (e) => {
+  // currentTarget gives me the div that has the event listener, even if I click the <p> child
+  // whereas e.target will give me the <p> if I click on <p> and <div> if I click on <div>
+  console.log(e.currentTarget.getAttribute('data-path'));
+  const path = e.currentTarget.getAttribute('data-path');
+  window.location = path;
+});
