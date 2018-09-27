@@ -253,10 +253,10 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
       next(err);
     } else {
       const game = result.rows[0];
-      const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created } = game;
+      const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created, template_body } = game;
       const words = { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created };
 
-      const story = ejs.render(result.rows[0].template_body, words);
+      const story = ejs.render(template_body, words);
       let ejsObj = { story, title, username, date_created, success: false, template_id: req.params.id, game_id: req.params.game_id };
       if (req.query.success) ejsObj.success = true;
       res.render('pages/games/show', ejsObj);
