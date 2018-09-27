@@ -35,10 +35,9 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/random', (req, res) => {
+app.get('/random', (req, res, next) => {
   client.query('SELECT id FROM stretch_templates', (err, result) => {
     if (err) {
-      console.log(err);
       next(err);
     } else {
       const allTemplates = result.rows.map(obj => obj.id);
@@ -57,7 +56,6 @@ app.get('/libs', (req, res) => {
 
   client.query(SQL, (err, result, next) => {
     if (err) {
-      console.log(err);
       next(err);
     } else {
       const templatesArr = result.rows.map(dataSet => ({ title: dataSet.title, author: dataSet.author, id: dataSet.id }));
@@ -72,11 +70,9 @@ app.get('/games', (req, res, next) => {
 
   client.query(SQL, (err, result) => {
     if (err) {
-      console.log(err);
       next(err);
     } else if (result.rows.length) {
       // map to compiled ejs template
-      console.log(result.rows);
       const games = result.rows.map(dataSet => {
         let gameObj = {};
         let libs = {};
@@ -84,7 +80,7 @@ app.get('/games', (req, res, next) => {
         for (let prop in dataSet) {
           if (prop.includes('lib')) libs[prop] = dataSet[prop];
         }
-        // console.log(dataSet);
+
         const body = ejs.render(dataSet.template_body, libs);
 
         gameObj.body = body;
@@ -109,7 +105,6 @@ app.get('/libs/:id/games/new', (req, res, next) => {
   const values = [req.params.id];
   client.query(SQL, values, (err, result) => {
     if (!result.rows[0]) {
-      console.log(err);
       next(err);
     } else {
       res.render('pages/games/new', {
@@ -141,7 +136,6 @@ function renderGamesIndex(req, res, next, result) {
 
   client.query(SQL, values, (err, result) => {
     if (err) {
-      console.log(err);
       next(err);
     } else if (result.rows.length) {
       // map to rendered ejs template
@@ -194,7 +188,6 @@ app.post('/libs/:id/games', (req, res, next) => {
 
   client.query(SQL, values, (err, result) => {
     if (err) {
-      console.log(err);
       next(err);
     }
 
@@ -208,7 +201,6 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
 
   client.query(SQL, values, (err, result) => {
     if (!result.rows) {
-      console.log(err);
       next(err);
     } else {
       const game = result.rows[0];
@@ -218,7 +210,6 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
       const story = ejs.render(result.rows[0].template_body, words);
       let ejsObj = { story, title, username, date_created, success: false, template_id: req.params.id, game_id: req.params.game_id };
       if (req.query.success) ejsObj.success = true;
-      console.log(story);
       res.render('pages/games/show', ejsObj);
     }
   });
@@ -230,7 +221,6 @@ app.delete('/libs/:id/games/:game_id', (req, res, next) => {
 
   client.query(SQL, values, (err) => {
     if (err) {
-      console.log(err);
       next(err);
     } else {
       res.redirect(`/libs/${req.params.id}/games?success=true`);
@@ -252,6 +242,7 @@ app.listen(PORT, () => {
 
 app.use(function (err, req, res, next) {
   console.log(err.message);
+  console.log(err);
   if (!err.statusCode) err.statusCode = 500;
 
   if (err.shouldRedirect) {
