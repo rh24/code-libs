@@ -288,6 +288,7 @@ main h1 {
 .completed-game {
   margin-bottom: 40px;
   padding: 20px;
+  border-radius: 5px;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
 }
@@ -295,6 +296,29 @@ main h1 {
 .completed-game:hover {
   cursor: pointer;
   background-color: var(--quaternary-color);
+}
+
+.show-container {
+  width: 85%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.browse-game {
+  font-size: 1.5em;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
+}
+
+.flex-button{
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .title {
@@ -316,6 +340,7 @@ text-align: center;
 }
 
 .success-message {
+  width: 75%;
   background-color: rgb(180, 229, 157);
   color: green;
   text-align: center;
@@ -329,6 +354,8 @@ p.user-date {
   font-size: .9em;
   font-style: italic;
 }
+
+
 
 .title {
   /* font-weight: bold;
