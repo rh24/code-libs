@@ -36,13 +36,23 @@ app.get('/', (req, res) => {
 });
 
 app.get('/random', (req, res, next) => {
-  client.query('SELECT id FROM stretch_templates', (err, result) => {
-    if (err) {
-      next(err);
+  // check if there are any templates at all
+  const checkTemplates = `SELECT * FROM stretch_templates`;
+
+  client.query(checkTemplates, (err, result) => {
+    if (!result.rows.length) {
+      res.redirect('libs/new');
     } else {
-      const allTemplates = result.rows.map(obj => obj.id);
-      let rand = allTemplates[Math.floor(Math.random() * allTemplates.length)];
-      res.redirect(`/libs/${rand}/games/new`);
+      console.log(result);
+      client.query('SELECT id FROM stretch_templates', (err, result) => {
+        if (err) {
+          next(err);
+        } else {
+          const allTemplates = result.rows.map(obj => obj.id);
+          let rand = allTemplates[Math.floor(Math.random() * allTemplates.length)];
+          res.redirect(`/libs/${rand}/games/new`);
+        }
+      });
     }
   });
 });
@@ -115,6 +125,7 @@ app.get('/libs/new', (req, res, next) => {
 });
 
 app.get('/games', (req, res, next) => {
+  // check if there are any games for that template
   const SQL = `SELECT * FROM stretch_templates JOIN stretch_games ON stretch_games.stretch_template_id = stretch_templates.id;`;
 
   client.query(SQL, (err, result) => {
@@ -129,7 +140,7 @@ app.get('/games', (req, res, next) => {
         for (let prop in dataSet) {
           if (prop.includes('lib')) libs[prop] = dataSet[prop];
         }
-
+        console.log(dataSet);
         const body = ejs.render(dataSet.template_body, libs);
 
         gameObj.body = body;
