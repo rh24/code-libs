@@ -5,6 +5,7 @@
   font-weight: bold;
   font-size: 1.15em;
   width: 60px;
+  transition:all 0.15s ease;
 }
 
 #mobile-hide {
@@ -72,6 +73,7 @@
 .prof-thumb {
   max-width: 250px;
   padding: 0px 20px;
+  transition:all 0.3s ease;
 }
 
 .modal-items img {
@@ -219,6 +221,7 @@
   box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
   text-decoration: none;
   color: var(--primary-color);
+  transition:all 0.3s ease;
 }
 
 .blank-template:hover{
@@ -238,6 +241,7 @@
   padding: 10px 20px;
   margin: 25px 25px;
   box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
+  transition:all 0.15s ease;
 }
 
 .button:hover {
