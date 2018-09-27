@@ -85,5 +85,5 @@ $('#create-form').on('submit', function () {
   let checkTen = split.reduce((acc, curr) => curr.includes('_') ? acc += 1 : acc, 0);
   console.log(checkTen);
 
-  checkTen > 10 ? alert('Too many blanks! Please, keep it to 10.') : (checkTen < 10 ? alert(`Too few blanks! Add ${10 - checkTen} more!`) : replaceBlanks(split));
+  checkTen > 10 ? alert(`${checkTen - 10} too many blanks! Please, keep it to 10.`) : (checkTen < 10 ? alert(`Too few blanks! Add ${10 - checkTen} more!`) : replaceBlanks(split));
 });
