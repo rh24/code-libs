@@ -185,12 +185,13 @@
   background-color: var(--tertiary-color);
 }
 
-.main_page {
+.page-container {
   text-align: center;
   display: initial;
+  max-width: 960px;
 }
 
-.main_page p {
+.page-container p {
   font-size: 1.25em;
 }
 
