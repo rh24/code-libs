@@ -1,6 +1,8 @@
 <%- include('../../partials/layout/head', { page_title: 'Game Index' }) %>
 
-<% if (!allGamesRoute) { %>
+<% if (noGames) { %>
+<%- include('../../partials/no_games', { title }) %>
+<% } else if (!allGamesRoute) { %>
   <h1>All completed games for <%= title %></h1>
   <%- include('../../partials/completed_games', { games }) %>
 <% } else { %>

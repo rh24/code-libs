@@ -119,16 +119,32 @@ app.get('/libs/:id/games/new', (req, res, next) => {
 });
 
 app.get('/libs/:id/games', (req, res, next) => {
+  // check if libs/:id is in the db
+  const checkDb = `SELECT * FROM stretch_templates WHERE id = $1;`;
+  const id = [req.params.id];
+
+  client.query(checkDb, id, (err, result) => {
+    if (result.rows.length) {
+      // if template exists, but no games presently played, render partial and trigger below function
+      renderGamesIndex(req, res, next, result);
+      console.log('hi');
+    } else {
+      next(err);
+    }
+  });
+});
+
+function renderGamesIndex(req, res, next, result) {
   const SQL = `SELECT * FROM stretch_templates JOIN stretch_games on stretch_templates.id = stretch_games.stretch_template_id WHERE stretch_templates.id = $1;`;
   const values = [req.params.id];
+  let { title } = result.rows[0];
+
   client.query(SQL, values, (err, result) => {
-    if (!result.rows[0]) {
+    if (err) {
       console.log(err);
       next(err);
-    } else {
-      let { title } = result.rows[0];
-
-      // map to compiled ejs template
+    } else if (result.rows.length) {
+      // map to rendered ejs template
       const games = result.rows.map(dataSet => {
         let gameObj = {};
         let libs = {};
@@ -148,11 +164,13 @@ app.get('/libs/:id/games', (req, res, next) => {
 
         return gameObj;
       });
-      // console.log(games);
+
       res.render('pages/games/index', { games, title, allGamesRoute: false });
+    } else {
+      res.render('pages/games/index', { title, noGames: true });
     }
   });
-});
+}
 
 //entering inputs from form into database and returning id to display filled out template.
 app.post('/libs/:id/games', (req, res, next) => {
