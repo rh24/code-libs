@@ -68,7 +68,7 @@ app.get('/libs', (req, res) => {
 });
 
 app.get('/games', (req, res, next) => {
-  const SQL = `SELECT * FROM stretch_games JOIN stretch_templates ON stretch_games.stretch_template_id = stretch_templates.id;`;
+  const SQL = `SELECT * FROM stretch_templates JOIN stretch_games ON stretch_games.stretch_template_id = stretch_templates.id;`;
 
   client.query(SQL, (err, result) => {
     if (err) {
@@ -76,7 +76,7 @@ app.get('/games', (req, res, next) => {
       next(err);
     } else {
       // map to compiled ejs template
-      console.log(result.rows[0]);
+      console.log(result.rows);
       const games = result.rows.map(dataSet => {
         let gameObj = {};
         let libs = {};
@@ -180,7 +180,7 @@ app.post('/libs/:id/games', (req, res, next) => {
       next(err);
     }
 
-    // res.redirect(`/libs/${req.params.id}/games/${result.rows[0].id}?success=true`);
+    res.redirect(`/libs/${req.params.id}/games/${result.rows[0].id}?success=true`);
   });
 });
 
