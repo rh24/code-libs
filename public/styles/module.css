@@ -6,12 +6,16 @@
   font-size: 1.15em;
   width: 60px;
   transition:all 0.15s ease;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px;
 }
 
 .menu-link:hover {
   background-color: var(--primary-color);
   color: var(--secondary-color);
+}
+
+#mobile-play {
+  border-radius: 10px 10px 0 0;
 }
 
 #mobile-hide {
@@ -156,7 +160,6 @@
   margin: 5%;
   border-radius: 5px;
   background-color: var(--quaternary-color);
-  opacity: .9;
   text-align: center;
   box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
   text-decoration: none;
@@ -311,6 +314,10 @@ p.user-date {
   margin-top: 4%;
 }
 
+.main_buttons a {
+  text-decoration: none;
+}
+
 @media (min-width: 800px) {
   main {
     max-width: 960px;
@@ -326,6 +333,10 @@ p.user-date {
     align-items: baseline;
     position: static;
     height: auto;
+  }
+
+  .menu-link {
+    border-radius: 10px 10px 0 0;
   }
 
   .close-menu-arrow, .hamburger, #mobile-play, .play-drop-down {
