@@ -1,4 +1,14 @@
-.prof-thumb:hover {
+.prof-thumb:hover, .expand-hover:hover, .button:hover  {
   transform: scale(1.15);
   cursor: pointer;
+}
+
+.currentPage { 
+  color: var(--primary-color);
+}
+
+@media (min-width: 800px) {
+  .currentPage { 
+    color: var(--tertiary-color);
+  }
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-$('.drop-down').on('mouseenter', () => {
+$('#mobile-hide').on('mouseenter', () => {
   $('.play-drop-down').slideDown(200);
 });
 
