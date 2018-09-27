@@ -63,3 +63,9 @@ $('.completed-game').on('click', (e) => {
   const path = e.currentTarget.getAttribute('data-path');
   window.location = path;
 });
+
+//template card selection
+$('.blank-template').on('click', (e) => {
+  const path = e.currentTarget.getAttribute('data-path');
+  window.location = path;
+});

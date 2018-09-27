@@ -58,7 +58,7 @@ app.get('/libs', (req, res) => {
     if (err) {
       next(err);
     } else {
-      const templatesArr = result.rows.map(dataSet => ({ title: dataSet.title, author: dataSet.author, id: dataSet.id }));
+      const templatesArr = result.rows.map(dataSet => ({ title: dataSet.title, author: dataSet.author, id: dataSet.id, url: `/libs/${dataSet.id}` }));
 
       res.render('pages/libs/index', { templates: templatesArr });
     }
@@ -215,6 +215,7 @@ app.get('/libs/:id/games/:game_id', (req, res, next) => {
       const story = ejs.render(result.rows[0].template_body, words);
       let ejsObj = { story, title, username, date_created, success: false, template_id: req.params.id, game_id: req.params.game_id };
       if (req.query.success) ejsObj.success = true;
+      ejsObj.url = `/libs/${ejsObj.template_id}/games/${ejsObj.game_id}`;
       res.render('pages/games/show', ejsObj);
     }
   });
@@ -229,6 +230,19 @@ app.delete('/libs/:id/games/:game_id', (req, res, next) => {
       next(err);
     } else {
       res.redirect(`/libs/${req.params.id}/games?success=true`);
+    }
+  });
+});
+
+app.delete('/libs/:id', (req, res, next) => {
+  const SQL = 'DELETE FROM stretch_templates WHERE stretch_templates.id = $1';
+  const values = [req.params.id];
+
+  client.query(SQL, values, (err) => {
+    if (err) {
+      next(err);
+    } else {
+      res.redirect('/libs');
     }
   });
 });
