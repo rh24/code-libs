@@ -1,17 +1,22 @@
-<%- include('../../partials/layout/head', { page_title: 'Show Games' }) %>
+<%- include('../../partials/layout/head', { page_title: 'Completed Game' }) %>
 
 <% if (success) { %>
   <%- include('../../partials/success') %>
 <% } %>
 
-<h1><%= title %></h1><button id="share">Share</button>
-<h2>Story created by: <%= username %></h2>
-<h2><%= date_created %></h2>
+<div class="show-container">
+  <h1 class="title">"<%= title %>"</h1>
+  <h2 class="title">Story created by: <%= username %></h2>
+  <h3 class="title"><%= date_created %></h3>
+  
+  <p class="browse-game"><%= story %></p>
 
-<p><%= story %></p>
-<a href="/libs/<%= template_id %>/games/new" class="button">Replay this story</a>
-<%- include('../../partials/layout/delete', { template_id, game_id }) %>
-<a href="/libs" class="button">Pick a different story</a>
-
+  <div class="flex-button">
+    <a href="/libs/<%= template_id %>/games/new" class="button">Replay this story</a>
+    <%- include('../../partials/layout/delete', { template_id, game_id }) %>
+    <a href="/libs" class="button">Pick a different story</a>
+    <button id="share" class="button">Share</button>
+  </div>
+</div>
 
 <%- include('../../partials/layout/tail', { footer: 'Test footer' }) %>

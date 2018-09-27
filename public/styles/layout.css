@@ -7,6 +7,7 @@
 
 body {
   background-image: url('/img/paper.png');
+  background-size: 35%;
   font-family: 'Poppins', sans-serif;
   color: var(--primary-color);
   display: flex;
@@ -15,7 +16,6 @@ body {
 }
 
 main {
-  /* padding: 0px 8% 10% 8%; */
   padding: 0px 0% 10% 0%;
   width: 100%;
   margin: 0 auto;
@@ -30,7 +30,7 @@ main {
   margin-bottom: 10vh;
 }
 
-.main-nav > img {
+.main-logo {
   align-self: center;
   padding: 15px 0px 15px 20px;
   max-width: 150px;

@@ -1,6 +1,6 @@
 'use strict';
 
-$('.drop-down').on('mouseenter', () => {
+$('#mobile-hide').on('mouseenter', () => {
   $('.play-drop-down').slideDown(200);
 });
 
@@ -77,62 +77,6 @@ const replaceBlanks = (split) => {
 
   console.log(addedEjsCones);
   $('#create-text').val(addedEjsCones);
-
-  return submitHandler();
-};
-
-const submitHandler = () => {
-  const title = $('#create-title').val();
-  const author = $('#create-author').val();
-  const date_created = new Date().toDateString();
-  const template_body = $('#create-text').val();
-  const label_1 = $('#label_1').val();
-  const label_2 = $('#label_2').val();
-  const label_3 = $('#label_3').val();
-  const label_4 = $('#label_4').val();
-  const label_5 = $('#label_5').val();
-  const label_6 = $('#label_6').val();
-  const label_7 = $('#label_7').val();
-  const label_8 = $('#label_8').val();
-  const label_9 = $('#label_9').val();
-  const label_10 = $('#label_10').val();
-
-  console.log(title,
-    author,
-    date_created,
-    template_body,
-    label_1,
-    label_2,
-    label_3,
-    label_4,
-    label_5,
-    label_6,
-    label_7,
-    label_8,
-    label_9,
-    label_10);
-  $.ajax({
-    type: 'POST',
-    url: '/libs',
-    data: {
-      title,
-      author,
-      date_created,
-      template_body,
-      label_1,
-      label_2,
-      label_3,
-      label_4,
-      label_5,
-      label_6,
-      label_7,
-      label_8,
-      label_9,
-      label_10
-    },
-    success: () => { console.log('succes'); },
-    dataType: 'json'
-  });
 };
 
 $('#create-form').on('submit', function () {
