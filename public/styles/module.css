@@ -252,10 +252,21 @@
   font-size: 1.25em;
 }
 
+main h1 {
+  margin: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
 .completed-game {
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 1)
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
+}
+
+.completed-games {
+  margin: 20px;
 }
 
 .title {

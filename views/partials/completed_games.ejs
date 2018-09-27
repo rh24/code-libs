@@ -1,6 +1,6 @@
 <div class="completed-games">
   <% games.forEach(game => { %>
-    <div class="completed-game">
+    <div class="completed-game" data-path="/libs/<%= game.stretch_template_id %>/games/<%= game.id %>">
       <% if (allGamesRoute) { %>
         <h3><%= game.title %></h3>
       <% } %>
