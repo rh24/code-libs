@@ -10,22 +10,22 @@ Other suggested features have been for users to be able to query a word generati
 
 ## HTML Endpoints
 
-* /
-![/](https://i.imgur.com/B126E1K.png, "Home Page")
-* /about
-![/about](https://i.imgur.com/2bMqMFL.png, "About Us")
-* /random
-![/random](https://i.imgur.com/ouDOoC9.png, "Random")
-* /libs
-![/libs](https://i.imgur.com/hbIPnPL.png, "Pick")
-* /games
-![/games](https://i.imgur.com/K6h0wVM.png, "Browse All Games")
-* /libs/new
-![/libs/new](https://i.imgur.com/QWuVV2y.png, "Create A Template")
-* /libs/:id/games/new
-![/libs/:id/games/new](https://i.imgur.com/IYDISnw.png, "Play A Lib")
-* /libs/:id/games/:id
-![/libs/:id/games/:id](https://i.imgur.com/qMtzWuK.png, "View A Completed Game")
+### /
+![/](https://i.imgur.com/B126E1K.png, "Home Page")</br>
+### /about
+![/about](https://i.imgur.com/2bMqMFL.png, "About Us")</br>
+### /random
+![/random](https://i.imgur.com/ouDOoC9.png, "Random")</br>
+### /libs
+![/libs](https://i.imgur.com/hbIPnPL.png, "Pick")</br>
+### /games
+![/games](https://i.imgur.com/K6h0wVM.png, "Browse All Games")</br>
+### /libs/new
+![/libs/new](https://i.imgur.com/QWuVV2y.png, "Create A Template")</br>
+### /libs/:id/games/new
+![/libs/:id/games/new](https://i.imgur.com/IYDISnw.png, "Play A Lib")</br>
+### /libs/:id/games/:id
+![/libs/:id/games/:id](https://i.imgur.com/qMtzWuK.png, "View A Completed Game")</br>
 
 ## Installation
 
