@@ -126,7 +126,7 @@ app.get('/libs/new', (req, res, next) => {
 
 app.get('/games', (req, res, next) => {
   // check if there are any games for that template
-  const SQL = `SELECT * FROM stretch_templates JOIN stretch_games ON stretch_games.stretch_template_id = stretch_templates.id;`;
+  const SQL = `SELECT * FROM stretch_templates JOIN stretch_games ON stretch_games.stretch_template_id = stretch_templates.id ORDER BY stretch_games.date_created DESC;`;
 
   client.query(SQL, (err, result) => {
     if (err) {
