@@ -8,6 +8,25 @@ Additional features will include the ability to upvote finished games and browse
 
 Other suggested features have been for users to be able to query a word generating API to help them get unstuck on possible entries. Templates may be categorized by topic. Templates can have many keyword tags, and each keyword can have many templates.
 
+## HTML Endpoints
+
+* /
+![/](https://i.imgur.com/B126E1K.png, "Home Page")
+* /about
+![/about](https://i.imgur.com/2bMqMFL.png, "About Us")
+* /random
+![/random](https://i.imgur.com/ouDOoC9.png, "Random")
+* /libs
+![/libs](https://i.imgur.com/hbIPnPL.png, "Pick")
+* /games
+![/games](https://i.imgur.com/K6h0wVM.png, "Browse All Games")
+* /libs/new
+![/libs/new](https://i.imgur.com/QWuVV2y.png, "Create A Template")
+* /libs/:id/games/new
+![/libs/:id/games/new](https://i.imgur.com/IYDISnw.png, "Play A Lib")
+* /libs/:id/games/:id
+![/libs/:id/games/:id](https://i.imgur.com/qMtzWuK.png, "View A Completed Game")
+
 ## Installation
 
 For necessary dependencies, run</br>
