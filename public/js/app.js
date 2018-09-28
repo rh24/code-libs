@@ -80,7 +80,7 @@ $('.blank-template').on('click', (e) => {
   const path = e.currentTarget.getAttribute('data-path');
   window.location = path;
 });
- 
+
 const replaceBlanks = (split) => {
   let i = 0;
   let addedEjsCones = split.map(str => {
