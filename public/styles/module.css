@@ -257,11 +257,28 @@ main h1 {
   box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
 }
 
+.--instruct{
+  font-size: 1.25em;
+  width: 75%;
+}
+
 .flex-button{
   justify-content: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.form-flex{
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-column{
+  width: 43%;
+  min-width: 150px;
 }
 
 .title {
@@ -282,6 +299,13 @@ text-align: center;
   margin: .5em 0;
 }
 
+.lib_form textarea{
+  width: 75%;
+  height: 9em;
+  padding: .5em 1em;
+  margin: .5em 0;
+}
+
 .success-message {
   width: 75%;
   background-color: rgb(180, 229, 157);
@@ -297,7 +321,6 @@ p.user-date {
   font-size: .9em;
   font-style: italic;
 }
-
 
 .random, .pick, .create {
   width: 280px;

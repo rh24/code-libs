@@ -1,28 +1,35 @@
 <%- include('../../partials/layout/head', { page_title: 'Lib Index' }) %>
 
-<h1>Create a template!</h1>
-<h3>How to contribute:</h3>
-<p>Write a story with exactly 10 fill in the blank spaces. Mark your blank space with a single underscore. This is very important. 😁</p>
+<h1 class="title">Create a template!</h1>
+<h3 class="title">How to contribute:</h3>
 
-<p>In the corresponding numbered inputs below the text area, enter the part of speech for each word. For example, if your first '_' is a noun, write "noun" in text input '1'.</p>
-
-<p>When you're done with your story, hit submit!</p>
-
-<form id="create-form" action="/libs" method="POST">
-  <input type="text" placeholder="title" name="title" />
-  <input type="text" placeholder="author" name="author" />
-  <textarea id="create-text" name="template_body"></textarea>
-  <input type="text" placeholder="1" name="label_1" />
-  <input type="text" placeholder="2" name="label_2" />
-  <input type="text" placeholder="3" name="label_3" />
-  <input type="text" placeholder="4" name="label_4" />
-  <input type="text" placeholder="5" name="label_5" />
-  <input type="text" placeholder="6" name="label_6" />
-  <input type="text" placeholder="7" name="label_7" />
-  <input type="text" placeholder="8" name="label_8" />
-  <input type="text" placeholder="9" name="label_9" />
-  <input type="text" placeholder="10" name="label_10" />
-  <input type="submit" />
-</form>
+<div class="browse-game --instruct">
+  <p>Write a story with exactly 10 fill in the blank spaces. Mark your blank space with a single underscore. This is very important. 😁</p>
+  <p>In the corresponding numbered inputs below the text area, enter the part of speech for each word. For example, if your first '_' is a noun, write "noun" in text input '1'.</p>
+  <p>When you're done with your story, hit submit!</p>
+</div>
+  
+  <form class="lib_form" id="create-form" action="/libs" method="POST">
+    <input type="text" placeholder="title" name="title" />
+    <input type="text" placeholder="author" name="author" />
+    <textarea id="create-text" name="template_body" placeholder="enter template text..."></textarea>
+    <div class="form-flex">
+      <div class="flex-column">
+        <input type="text" placeholder="1" name="label_1" />
+        <input type="text" placeholder="2" name="label_2" />
+        <input type="text" placeholder="3" name="label_3" />
+        <input type="text" placeholder="4" name="label_4" />
+        <input type="text" placeholder="5" name="label_5" />
+      </div>
+      <div class="flex-column">
+        <input type="text" placeholder="6" name="label_6" />
+        <input type="text" placeholder="7" name="label_7" />
+        <input type="text" placeholder="8" name="label_8" />
+        <input type="text" placeholder="9" name="label_9" />
+        <input type="text" placeholder="10" name="label_10" />
+      </div>
+    </div>
+    <input class="button" type="submit" />
+  </form>
 
 <%- include('../../partials/layout/tail', { footer: 'test' }) %>
