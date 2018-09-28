@@ -140,7 +140,7 @@ app.get('/games', (req, res, next) => {
         for (let prop in dataSet) {
           if (prop.includes('lib')) libs[prop] = dataSet[prop];
         }
-        console.log(dataSet);
+
         const body = ejs.render(dataSet.template_body, libs);
 
         gameObj.body = body;
