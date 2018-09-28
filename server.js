@@ -1,20 +1,11 @@
 'use strict';
 
-// let ejs = require('ejs');
-// const pg = require('pg');
-// const superagent = require('superagent');
 const express = require('express');
 const env = require('dotenv').config();
 const PORT = process.env.PORT;
-// const conString = process.env.DATABASE_URL;
 const app = express();
 const methodOverride = require('method-override');
 const controller = require('./controller');
-// const client = new pg.Client(conString);
-// client.connect();
-// client.on('error', error => {
-//   console.log(error);
-// });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
