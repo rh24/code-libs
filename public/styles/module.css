@@ -131,11 +131,12 @@
   text-align: center;
   cursor: pointer;
   border-radius: 0.25rem;
-  background-color: gray;
+  background-color: black;
+  color: white;
 }
 
 .close-modal:hover {
-  background-color: darkgray;
+  background-color: orange;
 }
 
 .modal-show, .sidebar-show {
@@ -255,6 +256,7 @@ main h1 {
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0 5px 5px 0 rgb(62,60,61, 0.5);
+  text-align: center;
 }
 
 .--instruct{
