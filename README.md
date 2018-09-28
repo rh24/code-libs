@@ -26,6 +26,8 @@ Other suggested features have been for users to be able to query a word generati
 ![/libs/:id/games/new](https://i.imgur.com/IYDISnw.png, "Play A Lib")</br>
 ### /libs/:id/games/:id
 ![/libs/:id/games/:id](https://i.imgur.com/qMtzWuK.png, "View A Completed Game")</br>
+### /libs/:id/games
+![/libs/:id/games](https://i.imgur.com/9qkP60t.png, "All Games for Specific Lib")</br>
 
 ## Installation
 
