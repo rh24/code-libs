@@ -169,12 +169,15 @@ const renderGamesIndex = (req, res, next, result) => {
         return gameObj;
       });
 
-      res.render('pages/games/index', { games, title, noGames: false, allGamesRoute: false });
+      let ejsObj = { games, title, noGames: false, allGamesRoute: false };
+      req.query.success ? ejsObj.successfullyDeleted = true : ejsObj.successfullyDeleted = false;
+
+      res.render('pages/games/index', ejsObj);
     } else {
       res.render('pages/games/index', { title, id, noGames: true });
     }
   });
-}
+};
 
 const getGamesForOneTemplate = (req, res, next) => {
   // check if libs/:id is in the db
