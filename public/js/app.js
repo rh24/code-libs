@@ -18,7 +18,7 @@ $('.close-menu-arrow').on('click', () => {
   closeSideMenu();
 });
 
-$('.sidebar-bg').on('click', ()=> {
+$('.sidebar-bg').on('click', () => {
   $('.main-menu').hide('slide', { direction: 'right' }, 250);
   closeSideMenu();
 });
@@ -97,12 +97,19 @@ const replaceBlanks = (split) => {
   $('#create-text').val(addedEjsCones);
 };
 
-$('#create-form').on('submit', function () {
+$('#create-form').on('submit', function (e) {
   let underScoreString = $('#create-text').val();
   let split = underScoreString.split('');
   let checkTen = split.reduce((acc, curr) => curr.includes('_') ? acc += 1 : acc, 0);
-  console.log(checkTen);
 
-  checkTen > 10 ? alert(`${checkTen - 10} too many blanks! Please, keep it to 10.`) : (checkTen < 10 ? alert(`Too few blanks! Add ${10 - checkTen} more!`) : replaceBlanks(split));
-
+  if (checkTen > 10) {
+    e.preventDefault();
+    alert(`${checkTen - 10} too many blanks! Please, keep it to 10.`);
+  } else if (checkTen < 10) {
+    e.preventDefault();
+    alert(`Too few blanks! Add ${10 - checkTen} more!`);
+  } else {
+    replaceBlanks(split);
+  }
+  
 });

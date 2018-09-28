@@ -3,6 +3,9 @@
 <% if (noGames) { %>
 <%- include('../../partials/no_games', { title }) %>
 <% } else if (!allGamesRoute) { %>
+  <% if (successfullyDeleted) { %>
+    <%- include('../../partials/success', { message: 'Game successfully deleted. Here are some completed games for this template that you might like better...' }) %>
+  <% } %>
   <h1>All completed games for <%= title %></h1>
   <%- include('../../partials/completed_games', { games }) %>
 <% } else { %>

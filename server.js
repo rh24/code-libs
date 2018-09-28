@@ -1,20 +1,11 @@
 'use strict';
 
-let ejs = require('ejs');
-const pg = require('pg');
-// const superagent = require('superagent');
 const express = require('express');
 const env = require('dotenv').config();
 const PORT = process.env.PORT;
-const conString = process.env.DATABASE_URL;
 const app = express();
 const methodOverride = require('method-override');
-
-const client = new pg.Client(conString);
-client.connect();
-client.on('error', error => {
-  console.log(error);
-});
+const controller = require('./controller');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -35,272 +26,37 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/random', (req, res, next) => {
-  // check if there are any templates at all
-  const checkTemplates = `SELECT * FROM stretch_templates`;
-
-  client.query(checkTemplates, (err, result) => {
-    if (!result.rows.length) {
-      res.redirect('libs/new');
-    } else {
-      console.log(result);
-      client.query('SELECT id FROM stretch_templates', (err, result) => {
-        if (err) {
-          next(err);
-        } else {
-          const allTemplates = result.rows.map(obj => obj.id);
-          let rand = allTemplates[Math.floor(Math.random() * allTemplates.length)];
-          res.redirect(`/libs/${rand}/games/new`);
-        }
-      });
-    }
-  });
-});
+app.get('/random', controller.getRandom);
 
 app.get('/about', (req, res) => {
   res.render('pages/about');
 });
 
-app.get('/libs', (req, res) => {
-  const SQL = `SELECT * FROM stretch_templates;`;
+app.get('/libs', controller.getLibs);
 
-  client.query(SQL, (err, result, next) => {
-    if (err) {
-      next(err);
-    } else {
-      const templatesArr = result.rows.map(dataSet => ({ title: dataSet.title, author: dataSet.author, id: dataSet.id, url: `/libs/${dataSet.id}` }));
-
-      res.render('pages/libs/index', { templates: templatesArr });
-    }
-  });
-});
-
-app.post('/libs', (req, res, next) => {
-  const SQL = `INSERT INTO stretch_templates (
-  title,
-  author,
-  date_created,
-  template_body,
-  label_1,
-  label_2,
-  label_3, 
-  label_4,
-  label_5,
-  label_6,
-  label_7,
-  label_8,
-  label_9,
-  label_10)
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);`;
-  const rightNow = new Date().toDateString();
-  const values = [
-    req.body.title,
-    req.body.author,
-    rightNow,
-    req.body.template_body,
-    req.body.label_1,
-    req.body.label_2,
-    req.body.label_3,
-    req.body.label_4,
-    req.body.label_5,
-    req.body.label_6,
-    req.body.label_7,
-    req.body.label_8,
-    req.body.label_9,
-    req.body.label_10
-  ];
-
-  client.query(SQL, values, (err) => {
-    if (err) {
-      next(err);
-    }
-
-    res.redirect(`/libs?success=true`);
-  });
-});
+app.post('/libs', controller.postLibs);
 
 app.get('/libs/new', (req, res, next) => {
   // how do i detect an error in here and pass to next? do I have to?
   res.render('pages/libs/new');
 });
 
-app.get('/games', (req, res, next) => {
-  // check if there are any games for that template
-  const SQL = `SELECT * FROM stretch_templates JOIN stretch_games ON stretch_games.stretch_template_id = stretch_templates.id;`;
-
-  client.query(SQL, (err, result) => {
-    if (err) {
-      next(err);
-    } else if (result.rows.length) {
-      // map to compiled ejs template
-      const games = result.rows.map(dataSet => {
-        let gameObj = {};
-        let libs = {};
-
-        for (let prop in dataSet) {
-          if (prop.includes('lib')) libs[prop] = dataSet[prop];
-        }
-
-        const body = ejs.render(dataSet.template_body, libs);
-
-        gameObj.body = body;
-        gameObj.title = dataSet.title;
-        gameObj.username = dataSet.username;
-        gameObj.date_created = dataSet.date_created;
-        gameObj.stretch_template_id = dataSet.stretch_template_id;
-        gameObj.id = dataSet.id;
-
-        return gameObj;
-      });
-      res.render('pages/games/index', { games, noGames: false, allGamesRoute: true });
-    } else {
-      res.render('pages/games/index', { noGames: true, title: null });
-    }
-  });
-});
+app.get('/games', controller.getGames);
 
 //displaying form for user inputs into template
-app.get('/libs/:id/games/new', (req, res, next) => {
-  const SQL = 'SELECT * FROM stretch_templates WHERE id = $1';
-  const values = [req.params.id];
-  client.query(SQL, values, (err, result) => {
-    if (!result.rows[0]) {
-      next(err);
-    } else {
-      res.render('pages/games/new', {
-        template: result.rows[0]
-      });
-    }
-  });
-});
+app.get('/libs/:id/games/new', controller.newGame);
 
-app.get('/libs/:id/games', (req, res, next) => {
-  // check if libs/:id is in the db
-  const checkDb = `SELECT * FROM stretch_templates WHERE id = $1;`;
-  const id = [req.params.id];
+app.get('/libs/:id/games', controller.getGamesForOneTemplate);
 
-  client.query(checkDb, id, (err, result) => {
-    if (result.rows.length) {
-      // if template exists, but no games presently played, render partial and trigger below function
-      renderGamesIndex(req, res, next, result);
-    } else {
-      next(err);
-    }
-  });
-});
-
-function renderGamesIndex(req, res, next, result) {
-  const SQL = `SELECT * FROM stretch_templates JOIN stretch_games on stretch_templates.id = stretch_games.stretch_template_id WHERE stretch_templates.id = $1;`;
-  const values = [req.params.id];
-  let { title, id } = result.rows[0];
-
-  client.query(SQL, values, (err, result) => {
-    if (err) {
-      next(err);
-    } else if (result.rows.length) {
-      // map to rendered ejs template
-      const games = result.rows.map(dataSet => {
-        let gameObj = {};
-        let libs = {};
-
-        for (let prop in dataSet) {
-          if (prop.includes('lib')) libs[prop] = dataSet[prop];
-        }
-
-        const body = ejs.render(dataSet.template_body, libs);
-
-        gameObj.body = body;
-        gameObj.title = dataSet.title;
-        gameObj.username = dataSet.username;
-        gameObj.date_created = dataSet.date_created;
-        gameObj.stretch_template_id = dataSet.stretch_template_id;
-        gameObj.id = dataSet.id;
-
-        return gameObj;
-      });
-
-      res.render('pages/games/index', { games, title, noGames: false, allGamesRoute: false });
-    } else {
-      res.render('pages/games/index', { title, id, noGames: true });
-    }
-  });
-}
 
 //entering inputs from form into database and returning id to display filled out template.
-app.post('/libs/:id/games', (req, res, next) => {
-  let SQL = `INSERT INTO stretch_games (username, date_created, stretch_template_id, lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id;`;
-  let rightNow = new Date().toDateString();
-  const values = [
-    req.body.username,
-    rightNow,
-    req.params.id,
-    req.body.lib_1,
-    req.body.lib_2,
-    req.body.lib_3,
-    req.body.lib_4,
-    req.body.lib_5,
-    req.body.lib_6,
-    req.body.lib_7,
-    req.body.lib_8,
-    req.body.lib_9,
-    req.body.lib_10,
-  ];
+app.post('/libs/:id/games', controller.addGame);
 
-  client.query(SQL, values, (err, result) => {
-    if (err) {
-      next(err);
-    }
+app.get('/libs/:id/games/:game_id', controller.showGame);
 
-    res.redirect(`/libs/${req.params.id}/games/${result.rows[0].id}?success=true`);
-  });
-});
+app.delete('/libs/:id/games/:game_id', controller.deleteGame);
 
-app.get('/libs/:id/games/:game_id', (req, res, next) => {
-  const SQL = `SELECT * FROM stretch_templates INNER JOIN stretch_games ON stretch_templates.id = stretch_games.stretch_template_id WHERE stretch_templates.id = $1 AND stretch_games.id = $2;`;
-  const values = [req.params.id, req.params.game_id];
-
-  client.query(SQL, values, (err, result) => {
-    if (!result.rows) {
-      next(err);
-    } else {
-      const game = result.rows[0];
-      const { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created, template_body } = game;
-      const words = { lib_1, lib_2, lib_3, lib_4, lib_5, lib_6, lib_7, lib_8, lib_9, lib_10, title, username, date_created };
-
-      const story = ejs.render(template_body, words);
-      let ejsObj = { story, title, username, date_created, success: false, template_id: req.params.id, game_id: req.params.game_id };
-      if (req.query.success) ejsObj.success = true;
-      ejsObj.url = `/libs/${ejsObj.template_id}/games/${ejsObj.game_id}`;
-      res.render('pages/games/show', ejsObj);
-    }
-  });
-});
-
-app.delete('/libs/:id/games/:game_id', (req, res, next) => {
-  const SQL = 'DELETE FROM stretch_games WHERE stretch_games.id = $1';
-  const values = [req.params.game_id];
-
-  client.query(SQL, values, (err) => {
-    if (err) {
-      next(err);
-    } else {
-      res.redirect(`/libs/${req.params.id}/games?success=true`);
-    }
-  });
-});
-
-app.delete('/libs/:id', (req, res, next) => {
-  const SQL = 'DELETE FROM stretch_templates WHERE stretch_templates.id = $1';
-  const values = [req.params.id];
-
-  client.query(SQL, values, (err) => {
-    if (err) {
-      next(err);
-    } else {
-      res.redirect('/libs');
-    }
-  });
-});
+app.delete('/libs/:id', controller.deleteTemplate);
 
 app.get('*', (req, res, next) => {
   const err = new Error(`the route ${req.originalUrl} does not exist.`);
@@ -314,14 +70,4 @@ app.listen(PORT, () => {
   console.log(`we are listening on port ${PORT}!`);
 });
 
-app.use(function (err, req, res) {
-  console.log(err.message);
-  console.log(err);
-  if (!err.statusCode) err.statusCode = 500;
-
-  if (err.shouldRedirect) {
-    res.render('pages/error', { err });
-  } else {
-    res.status(err.statusCode).send(err.message);
-  }
-});
+app.use(controller.errorHandler);
