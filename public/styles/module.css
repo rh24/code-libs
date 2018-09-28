@@ -131,11 +131,12 @@
   text-align: center;
   cursor: pointer;
   border-radius: 0.25rem;
-  background-color: gray;
+  background-color: black;
+  color: white;
 }
 
 .close-modal:hover {
-  background-color: darkgray;
+  background-color: orange;
 }
 
 .modal-show, .sidebar-show {
