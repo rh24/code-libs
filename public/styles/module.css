@@ -297,6 +297,7 @@ text-align: center;
   width: 75%;
   padding: .5em 1em;
   margin: .5em 0;
+  border-radius: 5px;
 }
 
 .lib_form textarea{
@@ -304,6 +305,7 @@ text-align: center;
   height: 9em;
   padding: .5em 1em;
   margin: .5em 0;
+  border-radius: 5px;
 }
 
 .success-message {
