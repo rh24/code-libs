@@ -1,4 +1,4 @@
-# Code Libs
+# Code Libs v 1.0.0
 
 Code Libs is a full-stack web application that creates fill-in-the-blank stories from user contributions to bring this phrasal template word game online for everyone's enjoyment. Users may share completed game links with one another and show off their results. Users may delete games from the database at the click of a button. This application does not have user authentication. Without user authentication, our app depends on a community managed database. Please, keep the funny games up!
 
