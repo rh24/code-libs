@@ -8,6 +8,13 @@
       <label for="username">Your Name: </label>
       <input type="text" id="username" name="username" placeholder="Your Name" required>
     </div>
+    <!-- this is SCREAMING for a loop. -->
+    <% [1,2,3,4,5,6,7,8,9,10].forEach(idx => { %>
+      <div>
+        <label for="lib_<%= idx %>"><%= template[`label_${idx}`] %>: </label>
+        <input type="text" id="lib_<%= idx %>" name="lib_<%= idx %>" placeholder="<%= template[`label_${idx}`] %>" required>
+      </div>
+    <% }) %>
     <div>
       <label for="lib_1"><%= template.label_1 %>: </label>
       <input type="text" id="lib_1" name="lib_1" placeholder="<%= template.label_1 %>" required>

@@ -1,7 +1,8 @@
 'use strict';
 
 const express = require('express');
-const env = require('dotenv').config();
+// no need for the variable you'll never use!
+require('dotenv').config();
 const PORT = process.env.PORT;
 const app = express();
 const methodOverride = require('method-override');
@@ -22,6 +23,7 @@ app.use(methodOverride(function (req) {
 
 app.set('view engine', 'ejs');
 
+// I'd prefer moving all of these into the controller file, even the tiny ones, but not a big deal.
 app.get('/', (req, res) => {
   res.render('index');
 });
@@ -36,8 +38,9 @@ app.get('/libs', controller.getLibs);
 
 app.post('/libs', controller.postLibs);
 
-app.get('/libs/new', (req, res, next) => {
+app.get('/libs/new', (req, res) => {
   // how do i detect an error in here and pass to next? do I have to?
+  // you don't have to! You can just not take in the 'next' param.
   res.render('pages/libs/new');
 });
 
@@ -69,5 +72,5 @@ app.get('*', (req, res, next) => {
 app.listen(PORT, () => {
   console.log(`we are listening on port ${PORT}!`);
 });
-
+// You should include all app.use lines before you app.listen line.
 app.use(controller.errorHandler);

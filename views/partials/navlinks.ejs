@@ -1,1 +1,5 @@
-<a class="menu-link<% if(page_title === curpage) { %> <%= "currentPage" %> <% } %>" href=<%= link %> 
+<a class="menu-link<% if(page_title === curpage) { %> <%= "currentPage" %> <% } %>" href=<%= link %>
+
+<!-- This template seems really odd to me. If you've got a template to render the anchor tag, then make it render the entire anchor tag, including the text inside of it and the closing </a>. 
+I'm also confused by the <%= "currentPage" %> notation: you shouldn't need the ejs at all to put a string literal onto the page.
+-->

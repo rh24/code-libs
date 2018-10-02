@@ -12,22 +12,17 @@ client.on('error', error => {
 const getRandom = (req, res, next) => {
 
   // check if there are any templates at all
-  const checkTemplates = `SELECT * FROM stretch_templates`;
+  // You're making two database calls here when you really only need one!
+  const checkTemplates = `SELECT id FROM stretch_templates`;
 
   client.query(checkTemplates, (err, result) => {
     if (!result.rows.length) {
       res.redirect('libs/new');
     } else {
       console.log(result);
-      client.query('SELECT id FROM stretch_templates', (err, result) => {
-        if (err) {
-          next(err);
-        } else {
-          const allTemplates = result.rows.map(obj => obj.id);
-          let rand = allTemplates[Math.floor(Math.random() * allTemplates.length)];
-          res.redirect(`/libs/${rand}/games/new`);
-        }
-      });
+      const allTemplates = result.rows.map(obj => obj.id);
+      let rand = allTemplates[Math.floor(Math.random() * allTemplates.length)];
+      res.redirect(`/libs/${rand}/games/new`);
     }
   });
 };
@@ -101,6 +96,7 @@ const getGames = (req, res, next) => {
       // map to compiled ejs template
       const games = result.rows.map(dataSet => {
         let gameObj = {};
+        // It would make your frontend life a lot easier if you made libs an array instead of an object!
         let libs = {};
 
         for (let prop in dataSet) {
@@ -187,6 +183,7 @@ const getGamesForOneTemplate = (req, res, next) => {
   client.query(checkDb, id, (err, result) => {
     if (result.rows.length) {
       // if template exists, but no games presently played, render partial and trigger below function
+      // Not sure why you needed another function for this; you aren't using renderGamesIndex anywhere else. And then you wouldn't need to make two DB calls.
       renderGamesIndex(req, res, next, result);
     } else {
       next(err);
