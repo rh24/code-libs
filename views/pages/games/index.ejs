@@ -1,7 +1,7 @@
 <%- include('../../partials/layout/head', { page_title: 'Browse Games' }) %>
 
 <% if (noGames) { %>
-<%- include('../../partials/no_games', { title }) %>
+  <%- include('../../partials/no_games', { title }) %>
 <% } else if (!allGamesRoute) { %>
   <% if (successfullyDeleted) { %>
     <%- include('../../partials/success', { message: 'Game successfully deleted. Here are some completed games for this template that you might like better...' }) %>
@@ -10,7 +10,9 @@
   <%- include('../../partials/completed_games', { games }) %>
 <% } else { %>
   <h1>Browse all games for all templates</h1>
+  <!-- It makes more sense to me to use allGamesRoute both here and on line 10, for consistency's sake. -->
   <%- include('../../partials/completed_games', { games, allGamesRoute }) %>
 <% } %>
 
-<%- include('../../partials/layout/tail', { footer: 'Test footer' }) %>
+<!-- Seems like the 'footer' param isn't used at all by the tail partial; why is it here? -->
+<%- include('../../partials/layout/tail') %>

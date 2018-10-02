@@ -10,32 +10,35 @@ Other suggested features have been for users to be able to query a word generati
 
 ## HTML Endpoints
 
+<!-- You shouldn't need the slash in front of these br tags; they're self-closing! You also don't need breaks at all if you've got headers. -->
 ### /
-![/](https://i.imgur.com/B126E1K.png, "Home Page")</br>
+![/](https://i.imgur.com/B126E1K.png, "Home Page")
 ### /about
-![/about](https://i.imgur.com/2bMqMFL.png, "About Us")</br>
+![/about](https://i.imgur.com/2bMqMFL.png, "About Us")
 ### /random
-![/random](https://i.imgur.com/ouDOoC9.png, "Random")</br>
+![/random](https://i.imgur.com/ouDOoC9.png, "Random")
 ### /libs
-![/libs](https://i.imgur.com/hbIPnPL.png, "Pick")</br>
+![/libs](https://i.imgur.com/hbIPnPL.png, "Pick")
 ### /games
-![/games](https://i.imgur.com/K6h0wVM.png, "Browse All Games")</br>
+![/games](https://i.imgur.com/K6h0wVM.png, "Browse All Games")
 ### /libs/new
-![/libs/new](https://i.imgur.com/QWuVV2y.png, "Create A Template")</br>
+![/libs/new](https://i.imgur.com/QWuVV2y.png, "Create A Template")
 ### /libs/:id/games/new
-![/libs/:id/games/new](https://i.imgur.com/IYDISnw.png, "Play A Lib")</br>
+![/libs/:id/games/new](https://i.imgur.com/IYDISnw.png, "Play A Lib")
 ### /libs/:id/games/:id
-![/libs/:id/games/:id](https://i.imgur.com/qMtzWuK.png, "View A Completed Game")</br>
+![/libs/:id/games/:id](https://i.imgur.com/qMtzWuK.png, "View A Completed Game")
 ### /libs/:id/games
-![/libs/:id/games](https://i.imgur.com/9qkP60t.png, "All Games for Specific Lib")</br>
+![/libs/:id/games](https://i.imgur.com/9qkP60t.png, "All Games for Specific Lib")
 
 ## Installation
 
-For necessary dependencies, run</br>
+For necessary dependencies, run
 
-```$ npm install```
-```$ nodemon```
-
+```
+$ npm install
+$ nodemon
+```
+<!-- This isn't actually enough to get your project up and running-at minimum, looks like I also need a .env file with a connection string and port number. -->
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/rh24/code-libs. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
@@ -105,7 +108,7 @@ Our goal is to make a simple word game that brings an on paper childhood favorit
 * Each game has a shareable link.
 * Game table has a title, user's name, 10 word columns, date created, foreign key for template. (Belongs to template)
 * Template table has a title, game skeleton w/ 10 EJS `<%= %>` in one long string, 10 labels (label1, label2, etc. .. ) a creator. (has many games).
-* game_template join table will allow us to see all data re: completed games in relation to each unique template.</br></br>
+* game_template join table will allow us to see all data re: completed games in relation to each unique template.
 * Create an “About Us” page within the application that lists details about the developers.
 * Use proper SMACSS file structure for styling the application with a clean theme styled mobile-first.
 * Ensure that state is persisted between the pages used.
@@ -113,10 +116,10 @@ Our goal is to make a simple word game that brings an on paper childhood favorit
 
 ### Stretch Goals
 
-> Play a narration of the games in Morgan Freeman's voice.</br></br>
-> Hit an external API for random word generation for all blanks/required parts of speech.</br></br>
-> Create new templates.</br></br>
-> Users can add their own templates. Each one must contain exactly 10 blanks. The two column form will be structured so that the left input is a part of the skeleton, and the right input will be a dropdown select menu with parts of speech.</br></br>
-> Users will PUT/update games if incomplete.</br></br>
-> If our app detects not all 10 spaces are filled out, upon submit, it will save the game, NOT show the template.</br></br>
+> Play a narration of the games in Morgan Freeman's voice.
+> Hit an external API for random word generation for all blanks/required parts of speech.
+> Create new templates.
+> Users can add their own templates. Each one must contain exactly 10 blanks. The two column form will be structured so that the left input is a part of the skeleton, and the right input will be a dropdown select menu with parts of speech.
+> Users will PUT/update games if incomplete.
+> If our app detects not all 10 spaces are filled out, upon submit, it will save the game, NOT show the template.
 > Users can save their answers mid-game and come back to it later.
